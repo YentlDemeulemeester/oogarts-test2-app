@@ -1,0 +1,14 @@
+﻿using Oogarts.Shared.EyeConditions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Oogarts.Shared.EyeConditions;
+
+public interface ISymptomService
+{
+    Task<SymptomResult.Index> GetIndexAsync(SymptomRequest.Index request);
+    Task<SymptomResult.Create> CreateAsync(SymptomDto.Mutate model);
+}

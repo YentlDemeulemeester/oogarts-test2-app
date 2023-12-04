@@ -1,0 +1,88 @@
+﻿
+
+
+.home {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    width: 100%; 
+
+    gap: 30px;
+
+    position: relative;
+}
+
+.bg-bol {
+    position: absolute;
+}
+
+.bg-bol:first-of-type {
+    top: -50px;
+    left: 180px;
+    z-index: -1000;
+}
+.bg-bol:nth-of-type(2) {
+    top: -80px;
+    left: 180px;
+    z-index: -1001;
+}
+.bg-bol:nth-of-type(3) {
+    top: 400px;
+    left: -50px;
+    z-index: -1000;
+}
+.bg-bol:nth-of-type(4) {
+    top: 535px;
+    left: 75px;
+    z-index: -1001;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    width: 100vw;
+}
+
+.information h1 {
+    font-family: 'Trirong', sans-serif;
+    font-size: 56px;
+}
+
+.information {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.infoContainer {
+    position:relative;
+    width:75%;
+    margin-left: 50px;
+    height: 550px;
+}
+
+.afspraakButton {
+    font-weight: bolder;
+    background-color: #AADFDF;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.container {
+    font-family: 'Poppins', sans-serif;
+    margin: 0 auto;
+    width: 100%;
+    height: calc(100vh - 40px);
+    margin-top: 1%;
+}
+
+.contactLink {
+    margin-left: 25px;
+    text-decoration: none;
+    cursor: pointer;
+    color: #2B2B2B;
+}
+
+.contactInfo {
+    margin-top: 25px;
+}

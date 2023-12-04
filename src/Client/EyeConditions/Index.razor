@@ -1,0 +1,105 @@
+﻿@page "/Oogaandoeningen"
+
+<PageTitle>Oogaandoeningen</PageTitle>
+
+<div class="oogaandoeningen">
+	<div class="header">
+		<h3>Oogaandoeningen</h3>
+        <div class="filter" >
+            @if (admin)
+            {
+                <button class="create" @onclick="NavigateToCreate">
+                    <img src="./images/plus.svg" alt="add" title="Voeg oogaandoening toe"/>
+                    Voeg toe
+                </button>
+            }
+            @if (symptoms is null)
+            {
+                <div class="loading">
+                    <Loader />
+                </div>
+            }
+            else
+            {
+                if (!symptoms.Any())
+                {
+                    <div class="notification">
+                        Geen symptomen gevonden...
+                    </div>
+                }
+                else
+                {
+                    <EyeConditionFilter Searchterm="@Searchterm" SymptomId="SymptomId" Symptoms="@symptoms" />
+                }
+            }   
+            <button class="profile" @onclick="UserChanged">
+                <img src="./images/user.svg" alt="admin" />
+            </button>
+		</div>
+	</div>
+	<div class="content">
+        @if (eyeConditions is null)
+        {
+            <div class="loading">
+                <Loader />
+            </div>
+        }
+        else
+        {
+            if (!eyeConditions.Any())
+            {
+                <div class="notification">
+                    Geen oogaandoeningen gevonden met deze zoek criteria...
+                </div>
+            }
+            else
+            {
+                @foreach (var item in eyeConditions)
+                {
+                    <EyeConditionCard EyeCondition="item" IsAdmin="@admin" OnDeleteRequested="HandleDeleteRequested"/>
+                }
+
+                @if (isRequestingDelete)
+                {
+                    <div class="request-overlay">
+                        <div class="request">
+                            <h4>Ben je zeker?</h4>
+                            <br />
+                            <button class="requestButton" @onclick="ConfirmDelete">Verwijder</button>
+                            <br />
+                            <button class="requestButton" @onclick="CancelDeleteRequest">Annuleer</button>
+                        </div>
+                    </div>
+                }
+            }
+        }
+	</div>
+</div>
+
+@code {
+    private bool isRequestingDelete = false;
+    private long deleteRequestId;
+
+	private void RequestDelete()
+	{
+		isRequestingDelete = true;
+	}
+
+    private void CancelDeleteRequest()
+    {
+        isRequestingDelete = false;
+    }
+
+    private async Task HandleDeleteRequested(long id)
+    {
+        deleteRequestId = id;
+        isRequestingDelete = true;
+    }
+
+    private async Task ConfirmDelete()
+    {
+        await EyeConditionService.DeleteAsync(deleteRequestId);
+        NavigationManager.NavigateTo("Oogaandoeningen", forceLoad: true);
+        isRequestingDelete = false;
+    }
+}

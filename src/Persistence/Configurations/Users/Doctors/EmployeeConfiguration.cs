@@ -1,0 +1,29 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Oogarts.Domain.Users.Doctors;
+using Oogarts.Domain.Users.Employees;
+
+namespace Oogarts.Persistence.Configurations.Users.Doctors;
+
+internal class EmployeeConfiguration : EntityConfiguration<Employee>
+{
+	public override void Configure(EntityTypeBuilder<Employee> builder)
+	{
+		base.Configure(builder);
+
+		builder.Property(x => x.FirstName).IsRequired();
+		builder.Property(x => x.LastName).IsRequired();
+		builder.Property(x => x.Birthdate).IsRequired();
+		builder.Property(x => x.PhoneNumber).IsRequired();
+		builder.Property(x => x.Email).IsRequired();
+
+		builder
+			.HasDiscriminator<string>("Team")
+			.HasValue<Doctor>("Doctor")
+			.HasValue<Assistant>("Assistant")
+			.HasValue<Secretary>("Secretary");
+
+		builder.HasMany(x => x.Availabilities)
+			.WithOne();
+	}
+}

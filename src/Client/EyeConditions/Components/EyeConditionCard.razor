@@ -1,0 +1,31 @@
+﻿<div class="oogaandoening">
+	<div class="afbeelding">
+        <img src="@EyeCondition.ImageUrl" alt="@EyeCondition.Name" title="@EyeCondition.Name" />
+	</div>
+	<div class="content">
+		<div class="text">
+ 			<h5>@EyeCondition.Name</h5>
+			<p>@EyeCondition.Description</p>
+		</div>
+		@if (IsAdmin)
+		{
+			<button class="delete_button" @onclick="RequestDelete">
+				<img src="./images/trash-2.svg" alt="delete button" title="Delete Oogaandoening"/>
+			</button>
+		}
+		<button @onclick="NavigateToDetail">LEES MEER</button>
+	</div>
+</div>
+
+@code {
+    private bool isRequestingDelete = false;
+
+    private void RequestDelete()
+    {
+        OnDeleteRequested.InvokeAsync(EyeCondition.Id);
+    }
+    private void NavigateToDetail()
+    {
+        NavigationManager.NavigateTo($"Oogaandoening/{EyeCondition.Id}");
+    }
+}

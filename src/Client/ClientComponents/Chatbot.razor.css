@@ -1,0 +1,36 @@
+﻿.chatbot {
+    position: fixed;
+    right: 140px;
+    bottom: 30px;
+    cursor: pointer;
+    z-index: 10;
+    width:47px;
+    height:53px;
+}
+
+.chatbot .curl {
+    position: absolute;
+    right: 3.964px;
+    top: 3px;
+
+    width: 14px;
+    height: 14px;
+    z-index: 2001;
+}
+
+.chatbot .i {
+   position: absolute;
+    left: 25%;
+    top: 0;
+
+    transform: translate(50%, 50%);
+
+    z-index: 2001;
+    width: 11px;
+    height: 23px;
+}
+@media only screen and (max-width: 750px) {
+    .chatbot {
+        right: 50px;
+    } 
+}

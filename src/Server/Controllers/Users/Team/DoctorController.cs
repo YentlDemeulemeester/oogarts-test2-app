@@ -1,0 +1,35 @@
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Oogarts.Services.Users.Team;
+using Oogarts.Shared.Users.Doctors.Employees;
+using Oogarts.Shared.Users.Team.Doctors;
+using Swashbuckle.AspNetCore.Annotations;
+
+namespace Oogarts.Server.Controllers.Users.Team;
+
+[ApiController]
+[Route("api/[controller]")]
+[Produces("application/json")]
+public class DoctorController : ControllerBase
+{
+	private readonly IDoctorService doctorService;
+
+	public DoctorController(IDoctorService doctorService)
+	{
+		this.doctorService = doctorService;
+	}
+
+	[SwaggerOperation("Returns a list of doctors.")]
+	[HttpGet, AllowAnonymous]
+	public async Task<DoctorResult.Index> GetIndex([FromQuery] DoctorRequest.Index request)
+	{
+		return await doctorService.GetIndexAsync(request);
+	}
+
+	[SwaggerOperation("Returns a specific doctor.")]
+	[HttpGet("{doctorId}"), AllowAnonymous]
+	public async Task<DoctorDto.Detail> GetDetail(long doctorId)
+	{
+		return await doctorService.GetDetailAsync(doctorId);
+	}
+}

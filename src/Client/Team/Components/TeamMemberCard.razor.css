@@ -1,0 +1,7 @@
+﻿.team img {
+    width: 177px;
+    height: 250px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    object-fit: cover;
+}
