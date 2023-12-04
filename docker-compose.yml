@@ -21,3 +21,5 @@ services:
       - MYSQL_PASSWORD=devpwd
     ports:
       - '3306:3306'
+
+"Server=mysql_container;Port=3306;Database=oogarts;User=devusr;Password=yourpassword;"
