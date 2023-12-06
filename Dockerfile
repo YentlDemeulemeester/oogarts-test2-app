@@ -35,6 +35,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final-env
 # Map aanmaken
 WORKDIR /app
 EXPOSE 80
+EXPOSE 3306
 # Kopieren van de vorige container naar de nieuwe container
 COPY --from=build-env /app/publish .
 
