@@ -20,6 +20,13 @@ public partial class Detail
     private async Task GetEyeConditionAsync()
     {
         eyeCondition = await EyeConditionService.GetDetailAsync(Id);
+
+        var bodyContent = eyeCondition?.Body;
+        Console.WriteLine($"Body content: {bodyContent}");
+    }
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/Oogaandoeningen");
     }
 
 }

@@ -1,5 +1,16 @@
 ﻿﻿﻿<div class="filters">
-    ﻿﻿<div class="field">
+    <div class="field">
+		<div class="select is-fullwidth">
+			<select @onchange="TagChanged">
+				<option value="">Selecteer</option>
+				@foreach (var symptom in symptoms)
+				{
+					<option value=@symptom.Id>@symptom.Name</option>
+				}
+			</select>
+		</div>
+	</div>
+    <div class="field">
         <div class="search">
             <input type="text" placeholder=" " value="@searchTerm" @onchange="SearchTermChanged">
             <div>
@@ -17,18 +28,6 @@
 
         <!-- dribbble -->
         <a class="dribbble" href="https://dribbble.com/shots/5547403-Search-input-animation" target="_blank"><img src="https://dribbble.com/assets/logo-small-2x-9fe74d2ad7b25fba0f50168523c15fda4c35534f9ea0b1011179275383035439.png" alt=""></a>
-	</div>
-    
-    <div class="field">
-		<div class="select is-fullwidth">
-			<select @onchange="TagChanged">
-				<option value="">Selecteer</option>
-				@foreach (var symptom in symptoms)
-				{
-					<option value=@symptom.Id>@symptom.Name</option>
-				}
-			</select>
-		</div>
-	</div>
+    </div>
 </div>
 

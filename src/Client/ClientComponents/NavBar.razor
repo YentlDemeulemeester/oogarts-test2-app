@@ -3,38 +3,38 @@
     <div class="nav-logo">
         <img class="logo" src="images/logo.png" title="Logo">
     </div>
-    <div class="nav-links">
-        <div class="nav-item px-3">
+    <div class="@GetBurgerMenuClass()">
+        <div class="nav-item px-3" @onclick="ToggleMenu">
             <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
                 HOME
                 <hr />
             </NavLink>
         </div>
-        <div class="nav-item px-3">
+        <div class="nav-item px-3" @onclick="ToggleMenu">
             <NavLink class="nav-link" href="/Team" Match="NavLinkMatch.All">
                 TEAM
                 <hr />
             </NavLink>
         </div>
-        <div class="nav-item px-3">
+        <div class="nav-item px-3" @onclick="ToggleMenu">
             <NavLink class="nav-link" href="/Nieuws" Match="NavLinkMatch.All">
                 NIEUWS
                 <hr />
             </NavLink>
         </div>
-        <div class="nav-item px-3">
+        <div class="nav-item px-3" @onclick="ToggleMenu">
             <NavLink class="nav-link" href="/Oogaandoeningen" Match="NavLinkMatch.All">
                 OOGAANDOENINGEN
                 <hr />
             </NavLink>
         </div>
-        <div class="nav-item px-3">
+        <div class="nav-item px-3" @onclick="ToggleMenu">
             <NavLink class="nav-link" href="/Afspraak" Match="NavLinkMatch.All">
                 AFSPRAKEN
                 <hr />
             </NavLink>
         </div>
-        <div class="nav-item px-3">
+        <div class="nav-item px-3" @onclick="ToggleMenu">
             <NavLink class="nav-link" href="/Contact" Match="NavLinkMatch.All">
                 CONTACT
                 <hr />
@@ -61,8 +61,5 @@
 
         </div>
     </div>
-    <img class="burger-menu" src="/images/menu.png"/>
+    <img class="burger-menu" src="/images/menu.png" @onclick="ToggleMenu" />
 </nav>
-@code {
-
-}

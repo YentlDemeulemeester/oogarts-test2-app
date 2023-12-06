@@ -108,6 +108,7 @@ public class EyeConditionService : IEyeConditionService
         {
             Id = x.Id,
             Name = x.Name,
+            Body = x.Body,
             Description = x.Description,
             ImageUrl = x.ImageUrl,
 

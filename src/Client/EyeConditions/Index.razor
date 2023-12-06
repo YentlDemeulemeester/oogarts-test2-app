@@ -63,17 +63,22 @@
                 {
                     <div class="request-overlay">
                         <div class="request">
-                            <h4>Ben je zeker?</h4>
-                            <br />
-                            <button class="requestButton" @onclick="ConfirmDelete">Verwijder</button>
-                            <br />
-                            <button class="requestButton" @onclick="CancelDeleteRequest">Annuleer</button>
+                            <div class="icon">
+                                <img src="./images/x.svg" alt="x" />
+                            </div>
+                            <h4>Verwijder oogaandoening</h4>
+                            <p>U staat op het punt om een oogaandoening te verwijderen. Bent u zeker dat u verder wilt gaan?</p>
+                            <div class="buttons">
+                                <button class="requestButton" @onclick="CancelDeleteRequest">Nee, Behoud het</button>
+                                <button class="requestButton" @onclick="ConfirmDelete">Ja, Verwijder</button>
+                            </div>
                         </div>
                     </div>
                 }
             }
         }
 	</div>
+    <Footer />
 </div>
 
 @code {

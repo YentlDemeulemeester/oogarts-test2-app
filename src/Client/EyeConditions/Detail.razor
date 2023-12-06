@@ -11,6 +11,10 @@
     }
     else
     {
+        <div class="back" @onclick="GoBack">
+            <img src="/images/chevron-left.svg" alt="checvron-left" />
+            <span>Terug</span>
+        </div>
         <div class="header">
             <h3>@eyeCondition?.Name</h3>
         </div>
@@ -21,24 +25,17 @@
                 </div>
                 <img class="bg-circle" src="/images/OogaandoeningEclipse.png" alt="Oogaandoening" />
                 <div class="introduction">
-                    <h5>@eyeCondition?.Name: De Stille Bedreiging voor Uw Gezichtsvermogen</h5>
-                    <p>Glaucoom is een veelvoorkomende oogaandoening die vaak onopgemerkt blijft tot het vergevorderde stadia bereikt. Het is een sluipende bedreiging voor uw gezichtsvermogen omdat het meestal geen symptomen veroorzaakt in de vroege fase. Het is daarom van vitaal belang om te begrijpen wat glaucoom is, hoe het wordt gediagnosticeerd en behandeld, en wat u kunt doen om uw ooggezondheid te beschermen.</p>
+                    <h5>Korte beschrijving:</h5>
+                    <p>@eyeCondition?.Description</p>
                 </div>
             </div>
+
             <article>
                 <section>
-                    <h5>Wat is Glaucoom?</h5>
-                    <p>Glaucoom is een groep oogaandoeningen die schade aan de oogzenuw veroorzaken, wat leidt tot verlies van gezichtsvermogen. Meestal is deze schade gerelateerd aan verhoogde druk in het oog, maar niet altijd. Het kan in beide ogen voorkomen, en als het onbehandeld blijft, kan het leiden tot permanente blindheid.</p>
-                </section>
-                <section>
-                    <h5>Soorten Glaucoom</h5>
-                    <p>Er zijn verschillende vormen van glaucoom, waarvan de twee meest voorkomende zijn:</p>
-                    <ul>
-                        <li><strong>Primair Openhoekglaucoom:</strong> Dit is de meest voorkomende vorm en ontwikkelt zich langzaam zonder symptomen. Het gezichtsvermogen wordt geleidelijk aangetast.</li>
-                        <li><strong>Acuut Geslotenhoekglaucoom:</strong> Dit is zeldzamer maar ernstiger. Het kan plotseling optreden en symptomen veroorzaken zoals oogpijn, wazig zicht en misselijkheid. Het vereist onmiddellijke medische aandacht.</li>
-                    </ul>
+                     @((MarkupString)@eyeCondition?.Body)
                 </section>
             </article>
         </div>
     }
+    <Footer />
 </div>

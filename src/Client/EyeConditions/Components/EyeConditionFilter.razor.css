@@ -5,9 +5,17 @@
     gap: 20px;
 }
 
+.field {
+    display: flex;
+    align-items: center;
+}
+.field:first-of-type{
+    z-index:1;
+}
 
 ﻿.search {
-  display: table;
+  display: block;
+  z-index:0;
 }
 .search input {
   background: none;
@@ -120,7 +128,8 @@ body .dribbble img {
     width: 100%;
     border-radius: 7.5px;
     height:40px;
-    border: 1px solid #bbb;
+    border:none;
     outline: none;
     padding: 5px;
+    cursor: pointer;
 }

@@ -9,9 +9,14 @@
 		</div>
 		@if (IsAdmin)
 		{
-			<button class="delete_button" @onclick="RequestDelete">
-				<img src="./images/trash-2.svg" alt="delete button" title="Delete Oogaandoening"/>
-			</button>
+			<div class="buttons">
+				<button class="edit_button">
+					<img src="./images/edit-2.svg" alt="edit button" title="Edit Oogaandoening" />
+				</button>
+				<button class="delete_button" @onclick="RequestDelete">
+					<img src="./images/trash-2.svg" alt="delete button" title="Delete Oogaandoening" />
+				</button>
+			</div>
 		}
 		<button @onclick="NavigateToDetail">LEES MEER</button>
 	</div>

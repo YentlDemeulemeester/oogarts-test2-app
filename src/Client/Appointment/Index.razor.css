@@ -1,7 +1,7 @@
 ﻿.appointment {
     position: relative;
     width: 100%;
-    height: 100%;
+    min-height: calc(100vh - 155px);
 }
 
 .appointment .header{
@@ -53,6 +53,10 @@
     position: absolute;
     bottom: -5px; 
     left: 0;
+}
+
+.appointment .datum {
+    max-width: 500px;
 }
 
 .appointment .body {
@@ -134,7 +138,7 @@
 ::deep .rz-calendar-inline {
     border-radius: 20px !important;
     border: none !important;
-    max-width: 500px;
+    width: 100%;
     margin: 25px 25px 25px 0;
 }
 ::deep .rz-state-active {
