@@ -33,7 +33,7 @@ builder.Services.AddSwaggerGen(options =>
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 	options.UseMySql(
-		builder.Configuration.GetConnectionString("MySqlServer"),
+		builder.Configuration.GetConnectionString("MySql"),
 		serverVersion)
 	// The following three options help with debugging, but should
 	// be changed or removed for production.
