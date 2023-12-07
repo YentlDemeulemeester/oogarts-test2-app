@@ -13,4 +13,4 @@ services:
       - '3306:3306'
   ubuntu:
     image: ubuntu:latest
-    command: tail -f /dev/null
+    command: /bin/bash -c "while true; do echo '1=1'; done"
