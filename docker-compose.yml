@@ -1,5 +1,15 @@
 version: '3.8'
 services:
+  oogarts:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: oogarts_container
+    ports:
+      - '8080:80'
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+      - DOTNET_ConnectionStrings__MySql="Server=mysql;Database=oogarts;User=devusr;Password=devpwd"
   mysql:
     image: mysql
     container_name: mysql_container
@@ -11,6 +21,3 @@ services:
       - MYSQL_PASSWORD=devpwd
     ports:
       - '3306:3306'
-  ubuntu:
-    image: ubuntu:latest
-    command: /bin/bash -c "while true; do echo '1=1'; done"
