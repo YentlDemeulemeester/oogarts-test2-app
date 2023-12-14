@@ -6,6 +6,15 @@ services:
     container_name: mysql_container
     restart: always
 
+    environment:
+      - MYSQL_ROOT_PASSWORD=Eyedoctor1!
+      - MYSQL_DATABASE=oogarts
+      - MYSQL_USER=devusr
+      - MYSQL_PASSWORD=devpwd
+
+    ports:
+      - '3306:3306'
+
   oogarts:
     build:
       context: .
@@ -17,16 +26,11 @@ services:
       - DOTNET_ENVIRONMENT:Production
       - DOTNET_ConnectionStrings__MySql:Server=mysql;Database=oogarts;Uid=devusr;Pwd=devpwd;
 
+    depends_on:
+      - mysql
+
     healthcheck:
-      test:
-        [
-          'CMD',
-          'mysqladmin',
-          '--user=root',
-          '--password=Eyedoctor1!',
-          '--port=3306',
-          'ping',
-        ]
+      test: ['CMD', 'ping', '-c', '3', 'mysql']
       interval: 30s
       timeout: 5s
       retries: 3
