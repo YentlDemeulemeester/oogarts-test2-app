@@ -1,5 +1,6 @@
 # Base image voor .NET 6.0
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+
 # Map aanmaken
 WORKDIR /app
 
@@ -14,7 +15,7 @@ COPY src/Services/Services.csproj ./src/Services/Services.csproj
 COPY src/Shared/Shared.csproj ./src/Shared/Shared.csproj
 COPY tests/Domain.Tests/Domain.Tests.csproj ./tests/Domain.Tests/Domain.Tests.csproj
 
-# Restore van de packages
+# Restore van de packages 
 RUN dotnet restore Oogarts.csproj
 RUN dotnet restore src/Client/Client.csproj
 RUN dotnet restore src/Domain/Domain.csproj
@@ -39,5 +40,7 @@ EXPOSE 80
 COPY --from=build-env /app/publish .
 
 # App starten
-ENTRYPOINT ["dotnet", "Server.dll"]
+#ENTRYPOINT ["dotnet", "Server.dll"]
+ENTRYPOINT ["echo", "${DOTNET_ConnectionStrings__MySql}"]
+
 
