@@ -53,6 +53,18 @@ namespace Services.Articles
             return result;
         }
 
+        public async Task DeleteAsync(long id)
+        {
+            Article? article = await dbContext.Articles.SingleOrDefaultAsync(x => x.Id == id);
+
+            if (article is null)
+                throw new EntityNotFoundException(nameof(EyeCondition), id);
+
+            dbContext.Articles.Remove(article);
+
+            await dbContext.SaveChangesAsync();
+        }
+
         public async Task<ArticleResult.Index> GetIndexAsync(ArticleRequest.Index request)
         {
             var searchTerm = request.Searchterm != null ? request.Searchterm.ToLowerInvariant() : null;

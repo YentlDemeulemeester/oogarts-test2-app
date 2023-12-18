@@ -2,34 +2,26 @@
 
 public class Availability : Entity
 {
-    private DateOnly day = default!;
-    public DateOnly Day
-    {
-        get => day;
-        set => day = Guard.Against.Null(value, nameof(day));
-    }
 
-    private TimeOnly start = default!;
-    public TimeOnly Start
+    private DateTime startDate = default!;
+    public DateTime StartDate
     {
-        get => start;
-        set => start = Guard.Against.Null(value,nameof(start));
-    }
-
-    private TimeOnly end = default!;
-    public TimeOnly End
-    {
-        get => end;
-        set => end = Guard.Against.Null(value, nameof(end));
-    }
+        get => startDate;
+        set => startDate = Guard.Against.Null(value, nameof(startDate));
+	}
+    private DateTime endDate = default!;
+	public DateTime EndDate
+	{
+		get => endDate;
+		set => endDate = Guard.Against.Null(value, nameof(endDate));
+	}
 
     //Database constructor
     private Availability() { }
 
-    public Availability(DateOnly day, TimeOnly start, TimeOnly end)
+    public Availability(DateTime startDate, DateTime endDate)
     {
-        Day = day;
-        Start = start;
-        End = end;
+        StartDate = startDate;
+        EndDate = endDate;
     }
 }

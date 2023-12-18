@@ -8,11 +8,14 @@ using Oogarts.Domain.Users.Doctors;
 using Oogarts.Domain.Users.Patients;
 using Oogarts.Persistence.Triggers;
 using System.Reflection;
+using Domain.Users.Employees;
 
 namespace Oogarts.Persistence;
 
 public class ApplicationDbContext : DbContext
 {
+    public DbSet<Group> Groups => Set<Group>();
+    public DbSet<Bio> Biographies => Set<Bio>();
     public DbSet<Employee> Employees => Set<Employee>();
 	public DbSet<Availability> Availabilities => Set<Availability>();
     public DbSet<Timeslot> Timeslots => Set<Timeslot>();

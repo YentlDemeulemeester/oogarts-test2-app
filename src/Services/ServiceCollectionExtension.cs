@@ -16,6 +16,9 @@ using Services.Files;
 using Oogarts.Shared.Users.Team.Doctors;
 using Services.EyeConditions;
 using Services.Users.Patients;
+using Shared.Users.Teams.Groups;
+using Services.Users.Team;
+using Shared.Users.Teams.Biographies;
 
 namespace Oogarts.Services;
 
@@ -36,8 +39,10 @@ public static class ServiceCollectionExtensions
 		services.AddScoped<IPatientService, PatientService>();
 		services.AddScoped<ISpecializationService, SpecializationService>();
 		services.AddScoped<IEmployeeService, EmployeeService>();
-		services.AddScoped<IDoctorService, DoctorService>();		
-		
+		services.AddScoped<IDoctorService, DoctorService>();	
+		services.AddScoped<IGroupService, GroupService>();
+		services.AddScoped<IBioService, BioService>();
+			
 		services.AddScoped<IStorageService,BlobStorageService>();
         services.AddScoped<IArticleService, ArticleService>();
 		return services;

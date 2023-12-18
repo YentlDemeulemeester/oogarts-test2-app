@@ -10,5 +10,6 @@ namespace Shared.Articles
     {
         Task<ArticleResult.Index> GetIndexAsync(ArticleRequest.Index request);
         Task<ArticleResult.Create> CreateAsync(ArticleDto.Mutate model);
+        Task DeleteAsync(long id);
     }
 }

@@ -9,6 +9,7 @@ public class DateOnlyJsonConverter : JsonConverter<DateOnly>
 
 	public override DateOnly Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
+		Console.WriteLine("**********************************************************************");
 		return DateOnly.ParseExact(reader.GetString()!, Format, CultureInfo.InvariantCulture);
 	}
 

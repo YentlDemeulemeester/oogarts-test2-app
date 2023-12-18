@@ -24,9 +24,14 @@ public class EyeConditionService : IEyeConditionService
         if (await dbContext.EyeConditions.AnyAsync(x => x.Name == model.Name))
             throw new EntityAlreadyExistsException(nameof(EyeCondition), nameof(EyeCondition.Name), model.Name);
 
-/*        Image image = new Image(storageService.BasePath, model.ImageContentType!);*/
+        /*        Image image = new Image(storageService.BasePath, model.ImageContentType!);*/
 
-        EyeCondition eyeCondition = new(model.Name, model.Description, model.Body, /*image.FileUri.ToString()*/ "Test");
+        //Brochure view url conversion to download url
+
+        string originalLink = model.BrochureUrl;
+        string downloadLink = ConvertToDownloadLink(originalLink);
+
+        EyeCondition eyeCondition = new(model.Name, model.Description, model.Body, /*image.FileUri.ToString()*/ "Test", downloadLink);
 
         var symptoms = await dbContext.Symptoms.Where(x => model.Symptoms.Select(s => s.Id).ToList().Contains(x.Id)).ToListAsync();
 
@@ -56,7 +61,8 @@ public class EyeConditionService : IEyeConditionService
             Name = eyeCondition.Name,
             Description = eyeCondition.Description,
             Body = eyeCondition.Body,
-            UploadUri = eyeCondition.ImageUrl
+            UploadUri = eyeCondition.ImageUrl,
+            BrochureUrl = eyeCondition.BrochureUrl
         };
 
         return result;
@@ -79,6 +85,9 @@ public class EyeConditionService : IEyeConditionService
 
         int totalAmount = await query.CountAsync();
 
+        
+
+
         var items = await query
             .Skip((request.Page - 1) * request.PageSize)
             .Take(request.PageSize)
@@ -89,6 +98,11 @@ public class EyeConditionService : IEyeConditionService
                 Name = x.Name,
                 Description = x.Description,
                 ImageUrl = x.ImageUrl,
+                Symptoms = x.Symptoms.Select(s => new SymptomDto.Index
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                }).ToList(),
             })
             .ToListAsync();
 
@@ -111,6 +125,7 @@ public class EyeConditionService : IEyeConditionService
             Body = x.Body,
             Description = x.Description,
             ImageUrl = x.ImageUrl,
+            BrochureUrl = x.BrochureUrl,
 
         }).SingleOrDefaultAsync(x => x.Id == Id);
 
@@ -162,4 +177,16 @@ public async Task EditAsync(long id, EyeConditionDto.Mutate model)
     //         _context.SaveChanges();
     //     }
     // }
+
+    static string ConvertToDownloadLink(string originalLink)
+    {
+        const string fileMarker = "https://drive.google.com/file/d/";
+        const string viewMarker = "/view?usp=sharing";
+        const string downloadEndpoint = "https://drive.google.com/uc?export=download&id=";
+
+        string temp = originalLink.Replace(fileMarker, "");
+        temp = temp.Replace(viewMarker, "");
+        temp = downloadEndpoint + temp;
+        return temp;
+    }
 }

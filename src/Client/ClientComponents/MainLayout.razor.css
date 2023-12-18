@@ -2,17 +2,16 @@
     position: relative;
 
     display: flex;
-    align-items: center;
-    justify-content:center;
+    align-items: stretch;
+    justify-content:flex-start;
     flex-direction: column;
-    gap: 15px;
+    gap: 30px;
 
     width: 100%;
     min-height: 100vh;
 
-    padding: 0 140px;
-
-    background-color: #43cac12e;
+    padding: 20px 140px;
+    background: transparent;
 }
 
 .page nav {

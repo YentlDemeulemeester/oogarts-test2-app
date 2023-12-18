@@ -5,6 +5,7 @@ using Oogarts.Shared.Appointments.Timeslots;
 using Oogarts.Shared.Users.Doctors.Availabilities;
 using Oogarts.Shared.Users.Doctors.Specializations;
 using Oogarts.Shared.Users.Team.Doctors;
+using Shared.Users.Teams.Groups;
 
 namespace Oogarts.Services.Users.Team;
 
@@ -41,7 +42,13 @@ public class DoctorService : IDoctorService
 				{
 					Id = x.Id,
 					Name = x.Name,
-				})
+				}),
+				Group = new GroupDto.Index
+				{
+					Id = x.Group.Id,
+					Name = x.Group.Name,
+					Sequence = x.Group.Sequence,
+				},
 			})
 			.ToListAsync();
 
@@ -61,9 +68,14 @@ public class DoctorService : IDoctorService
 			Id= x.Id,
 			Firstname= x.FirstName,
 			Lastname= x.LastName,
-			Birthdate = x.Birthdate,
 			Email = x.Email,
 			Phonenumber = x.PhoneNumber,
+			Group = new GroupDto.Index
+			{
+				Id = x.Group.Id,
+				Name = x.Group.Name,
+				Sequence = x.Group.Sequence,
+			},
 			Specializations = x.Specializations.Select(x => new SpecializationDto.Index
 			{
 				Id = x.Id,
@@ -72,9 +84,8 @@ public class DoctorService : IDoctorService
 			Availabilities = x.Availabilities.Select(x => new AvailabilityDto.Index
 			{
 				Id = x.Id,
-				Day = x.Day,
-				Start = x.Start,
-				End = x.End,
+				StartDate = x.StartDate,
+				EndDate = x.EndDate,
 			}),
 			Timeslots = x.Timeslots.Select(x => new TimeslotDto.Index
 			{

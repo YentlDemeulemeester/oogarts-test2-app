@@ -8,6 +8,7 @@ namespace Oogarts.Server.Controllers.EyeConditions;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
+[Authorize(Roles = "Administrator")]
 public class EyeConditionController : ControllerBase
 {
     private readonly IEyeConditionService eyeConditionService;
@@ -25,7 +26,7 @@ public class EyeConditionController : ControllerBase
 	}
 
 	[SwaggerOperation("Creates a new eyecondition")]
-	[HttpPost, /*Authorize(Roles = Roles.Administrator)*/ AllowAnonymous]
+	[HttpPost]
 	public async Task<IActionResult> Create(EyeConditionDto.Mutate model)
     {
 		var creationId = await eyeConditionService.CreateAsync(model);
@@ -40,7 +41,7 @@ public class EyeConditionController : ControllerBase
     }
 
     [SwaggerOperation("Edits an existing eyecondition.")]
-    [HttpPut("{id}"), AllowAnonymous]
+    [HttpPut("{id}")]
     public async Task<IActionResult> Edit(long id, EyeConditionDto.Mutate model)
     {
         await eyeConditionService.EditAsync(id, model);
@@ -48,7 +49,7 @@ public class EyeConditionController : ControllerBase
     }
 
 	[SwaggerOperation("Deletes an existing eyecondition.")]
-    [HttpDelete("{id}"), AllowAnonymous]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(long id)
     {
         await eyeConditionService.DeleteAsync(id);

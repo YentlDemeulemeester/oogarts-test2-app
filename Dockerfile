@@ -1,5 +1,3 @@
-# Dockerfile
-
 # Base image voor .NET 6.0
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 # Map aanmaken
@@ -42,6 +40,3 @@ COPY --from=build-env /app/publish .
 
 # App starten
 ENTRYPOINT ["dotnet", "Server.dll"]
-#ENTRYPOINT ["echo", "${DOTNET_ConnectionStrings__MySql}"]
-
-

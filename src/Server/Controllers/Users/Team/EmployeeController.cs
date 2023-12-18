@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Oogarts.Shared.Users.Doctors.Employees;
+using Shared.Users.Teams.Groups;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Oogarts.Server.Controllers.Users.Team;
@@ -8,6 +9,7 @@ namespace Oogarts.Server.Controllers.Users.Team;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
+[Authorize(Roles = "Administrator")]
 public class EmployeeController : ControllerBase
 {
 	private readonly IEmployeeService employeeService;
@@ -50,5 +52,21 @@ public class EmployeeController : ControllerBase
 	public async Task<EmployeeDto.Detail> GetDetail(long employeeId)
 	{
 		return await employeeService.GetDetailAsync(employeeId);
+	}
+
+	[SwaggerOperation("Edites an existing employee.")]
+	[HttpPut("{id}"), AllowAnonymous]
+	public async Task<IActionResult> Edit(long id, EmployeeDto.Mutate model)
+	{
+		await employeeService.EditAsync(id, model);
+		return NoContent();
+	}
+
+	[SwaggerOperation("Changes group for an employee.")]
+	[HttpPut("{employeeId}/{groupId}"), AllowAnonymous]
+	public async Task<IActionResult> ChangeGroup(long employeeId, long groupId)
+	{
+		await employeeService.ChangeGroupAsync(employeeId, groupId);
+		return NoContent();
 	}
 }

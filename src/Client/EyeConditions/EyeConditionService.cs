@@ -1,4 +1,5 @@
-﻿using Oogarts.Client.Extensions;
+﻿using Client.Classes;
+using Oogarts.Client.Extensions;
 using Oogarts.Shared.EyeConditions;
 using System;
 using System.Net.Http;
@@ -9,34 +10,36 @@ namespace Oogarts.Client.EyeConditions;
 
 public class EyeConditionService : IEyeConditionService
 {
-	private readonly HttpClient client;
-	private const string endpoint = "api/EyeCondition";
-	public EyeConditionService(HttpClient client)
+    private readonly PublicClient publicClient;
+    private readonly HttpClient authenticatedClient;
+    private const string endpoint = "api/EyeCondition";
+	public EyeConditionService(HttpClient authenticatedClient, PublicClient publicClient)
 	{
-		this.client = client;
+		this.authenticatedClient = authenticatedClient;
+        this.publicClient = publicClient;
 	}
 	
 	public async Task<EyeConditionResult.Index> GetIndexAsync(EyeConditionRequest.Index request)
 	{
-		var response = await client.GetFromJsonAsync<EyeConditionResult.Index>($"{endpoint}?{request.AsQueryString()}");
+		var response = await publicClient.Client.GetFromJsonAsync<EyeConditionResult.Index>($"{endpoint}?{request.AsQueryString()}");
         return response!;
 	}
 
     public async Task<EyeConditionResult.Create> CreateAsync(EyeConditionDto.Mutate model)
     {
-        var response = await client.PostAsJsonAsync(endpoint, model);
+        var response = await authenticatedClient.PostAsJsonAsync(endpoint, model);
         return await response.Content.ReadFromJsonAsync<EyeConditionResult.Create>();
     }
 
     public async Task EditAsync(long id, EyeConditionDto.Mutate edit)
     {
-	   var response = await client.PutAsJsonAsync($"{endpoint}/{id}", edit);
+	   var response = await authenticatedClient.PutAsJsonAsync($"{endpoint}/{id}", edit);
  	   response.EnsureSuccessStatusCode();
     }
 
     public async Task DeleteAsync(long id)
     {
-        await client.DeleteAsync($"{endpoint}/{id}");
+        await authenticatedClient.DeleteAsync($"{endpoint}/{id}");
     }
 
     //public async Task<EyeConditionResult.Create> CreateAsync(EyeConditionDto.Mutate request)
@@ -52,7 +55,7 @@ public class EyeConditionService : IEyeConditionService
 
     public async Task<EyeConditionDto.Detail> GetDetailAsync(long eyeConditionId)
     {
-        var response = await client.GetFromJsonAsync<EyeConditionDto.Detail>($"{endpoint}/{eyeConditionId}");
+        var response = await publicClient.Client.GetFromJsonAsync<EyeConditionDto.Detail>($"{endpoint}/{eyeConditionId}");
         return response;
     }
 

@@ -21,7 +21,14 @@ public class EyeCondition : Entity {
         get => body;
         set => body = Guard.Against.NullOrWhiteSpace(value,nameof(Body));
 	}
-    
+
+    private string brochureUrl = default!;
+    public string BrochureUrl
+    {
+        get => brochureUrl;
+        set => brochureUrl = Guard.Against.Null(value, nameof(BrochureUrl));
+    }
+
     private string imageUrl = default!;
     public string ImageUrl
     {
@@ -38,11 +45,12 @@ public class EyeCondition : Entity {
     //Database Constructor
     private EyeCondition() { }
 
-    public EyeCondition(string name, string description, string body, string imageUrl) {
+    public EyeCondition(string name, string description, string body, string imageUrl, string brochureUrl) {
         Name = name;
         Description = description;
         Body = body;
         ImageUrl = imageUrl;
+        BrochureUrl = brochureUrl;
     }
 
     public void Symptom(Symptom symptom)

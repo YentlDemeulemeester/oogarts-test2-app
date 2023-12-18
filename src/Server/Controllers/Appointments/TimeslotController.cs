@@ -8,6 +8,7 @@ namespace Oogarts.Server.Controllers.Appointments;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
+[Authorize(Roles = "Administrator")]
 public class TimeslotController : ControllerBase
 {
 	private readonly ITimeslotService timeslotService;

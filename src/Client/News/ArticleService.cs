@@ -35,6 +35,12 @@ public class ArticleService : IArticleService
  	   response.EnsureSuccessStatusCode();
     }
 
+    public async Task DeleteAsync(long id)
+    {
+        var response = await client.DeleteAsync($"{endpoint}/{id}");
+        response.EnsureSuccessStatusCode();
+    }
+
     //public async Task DeleteAsync(long id)
     //{
     //    await client.DeleteAsync($"{endpoint}/{id}");

@@ -15,6 +15,7 @@ public abstract class EyeConditionResult
 		public string? Description { get; set; }
 		public string? Body { get; set; }
 		public string UploadUri { get; set; } = default!;
-	}
+		public string? BrochureUrl { get; set; }
+    }
 	
 }

@@ -56,55 +56,12 @@
             {
                 @foreach (var item in eyeConditions)
                 {
-                    <EyeConditionCard EyeCondition="item" IsAdmin="@admin" OnDeleteRequested="HandleDeleteRequested"/>
-                }
-
-                @if (isRequestingDelete)
-                {
-                    <div class="request-overlay">
-                        <div class="request">
-                            <div class="icon">
-                                <img src="./images/x.svg" alt="x" />
-                            </div>
-                            <h4>Verwijder oogaandoening</h4>
-                            <p>U staat op het punt om een oogaandoening te verwijderen. Bent u zeker dat u verder wilt gaan?</p>
-                            <div class="buttons">
-                                <button class="requestButton" @onclick="CancelDeleteRequest">Nee, Behoud het</button>
-                                <button class="requestButton" @onclick="ConfirmDelete">Ja, Verwijder</button>
-                            </div>
-                        </div>
-                    </div>
+                    <EyeConditionCard EyeCondition="item" IsAdmin="@admin" OnDeleteRequested="ToggleDeletePopUp" OnOpenInfo="ToglleInfoPopUp"/>
                 }
             }
         }
 	</div>
+    <DeletePopUp Open="@open" ObjectName="oogaandoening" ToggleClose="CloseDeletePopUp" RequestDelete="ConfirmDelete" />
+    <InfoPopUp Open="@openInfo" Message="Momenteel is het nog niet mogelijk om een oogaandoening te bewerken." ToggleClose="ToglleInfoPopUp" />
     <Footer />
 </div>
-
-@code {
-    private bool isRequestingDelete = false;
-    private long deleteRequestId;
-
-	private void RequestDelete()
-	{
-		isRequestingDelete = true;
-	}
-
-    private void CancelDeleteRequest()
-    {
-        isRequestingDelete = false;
-    }
-
-    private async Task HandleDeleteRequested(long id)
-    {
-        deleteRequestId = id;
-        isRequestingDelete = true;
-    }
-
-    private async Task ConfirmDelete()
-    {
-        await EyeConditionService.DeleteAsync(deleteRequestId);
-        NavigationManager.NavigateTo("Oogaandoeningen", forceLoad: true);
-        isRequestingDelete = false;
-    }
-}

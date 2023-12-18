@@ -4,6 +4,7 @@
 @using Radzen.Blazor
 @using FluentValidation
 @inject IJSRuntime JSRuntime
+@attribute [Authorize(Roles ="Administrator")]
 
 <div class="create-eyecondition">
     <div class="header">
@@ -25,6 +26,11 @@
                     </label>
                 </div>
                 <ValidationMessage For="() => eyeCondition.ImageContentType" />
+            </div>
+            <div class="field">
+                <label class="label">Brochure download link</label>
+                <InputText class="input" @bind-Value="eyeCondition.BrochureUrl" />
+                <ValidationMessage For="() => eyeCondition.BrochureUrl" />
             </div>
             <div class="field">
                 <label class="label">Omschrijving</label>

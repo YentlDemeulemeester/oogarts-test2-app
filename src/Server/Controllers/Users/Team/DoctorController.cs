@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Oogarts.Services.Users.Team;
-using Oogarts.Shared.Users.Doctors.Employees;
 using Oogarts.Shared.Users.Team.Doctors;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -10,6 +8,7 @@ namespace Oogarts.Server.Controllers.Users.Team;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
+[Authorize(Roles = "Administrator")]
 public class DoctorController : ControllerBase
 {
 	private readonly IDoctorService doctorService;

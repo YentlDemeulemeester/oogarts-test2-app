@@ -5,6 +5,7 @@ using Oogarts.Shared.EyeConditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,6 +37,31 @@ public class SymptomService : ISymptomService
         };
 
 
+    }
+    public async Task DeleteAsync(long id)
+    {
+        Symptom? symptom = await dbContext.Symptoms.SingleOrDefaultAsync(x => x.Id == id);
+
+        if (symptom is null)
+            throw new EntityNotFoundException(nameof(EyeCondition), id);
+
+        dbContext.Symptoms.Remove(symptom);
+
+        await dbContext.SaveChangesAsync();
+    }
+
+    public async Task EditAsync(long symptomId, SymptomDto.Mutate model)
+    {
+        Symptom? symptom = await dbContext.Symptoms.SingleOrDefaultAsync(x => x.Id == symptomId);
+
+        if (symptom is null)
+        {
+            throw new EntityNotFoundException(nameof(symptom), symptomId);
+        }
+
+        symptom.Name = model.Name!;
+
+        await dbContext.SaveChangesAsync();
     }
 
     public async Task<SymptomResult.Index> GetIndexAsync(SymptomRequest.Index request)

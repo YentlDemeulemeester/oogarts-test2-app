@@ -49,6 +49,12 @@ namespace Client.EyeConditions.Components
             if (!results.IsValid)
             {
                 var errorMessages = string.Join("\n", results.Errors.Select(failure => $"{failure.ErrorMessage}"));
+            /*            var symptomsSelected = officialSymptoms.Where(x => selectedSymptoms.Contains(x.Id)).ToList();
+                        foreach (var symptom in symptomsSelected)
+                        {
+                            eyeCondition.Symptoms.Add(symptom);
+                        }*/
+                EyeConditionResult.Create result = await EyeConditionService.CreateAsync(eyeCondition);
 
                 // Display all error messages in a single alert
                 await JSRuntime.InvokeVoidAsync("alert", errorMessages);

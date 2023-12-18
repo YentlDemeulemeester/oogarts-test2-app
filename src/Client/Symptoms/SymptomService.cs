@@ -1,5 +1,5 @@
+using Client.Classes;
 using Oogarts.Client.Extensions;
-using Oogarts.Shared.EyeConditions;
 using Oogarts.Shared.EyeConditions;
 using System;
 using System.Net.Http;
@@ -10,23 +10,36 @@ namespace Client.Symptoms;
 
 public class SymptomService : ISymptomService
 {
-    private readonly HttpClient client;
+    private readonly HttpClient authorizedClient;
+    private readonly PublicClient publicClient;
     private const string endpoint = "api/symptom";
 
-    public SymptomService(HttpClient client)
+    public SymptomService(HttpClient authorizedClient, PublicClient publicClient)
     {
-        this.client = client;
+        this.authorizedClient = authorizedClient;
+        this.publicClient = publicClient;
     }
 
     public async Task<SymptomResult.Index> GetIndexAsync(SymptomRequest.Index request)
     {
-        var response = await client.GetFromJsonAsync<SymptomResult.Index>($"{endpoint}?{request.AsQueryString()}");
+        var response = await publicClient.Client.GetFromJsonAsync<SymptomResult.Index>($"{endpoint}?{request.AsQueryString()}");
         return response!;
     }
 
     public async Task<SymptomResult.Create> CreateAsync(SymptomDto.Mutate model)
     {
-        var response = await client.PostAsJsonAsync(endpoint, model);
+        var response = await authorizedClient.PostAsJsonAsync(endpoint, model);
         return await response.Content.ReadFromJsonAsync<SymptomResult.Create>();
+    }
+
+    public async Task DeleteAsync(long id)
+    {
+        await authorizedClient.DeleteAsync($"{endpoint}/{id}");
+    }
+
+    public async Task EditAsync(long symptomId, SymptomDto.Mutate model)
+    {
+        var response = await authorizedClient.PutAsJsonAsync($"{endpoint}/{symptomId}", model);
+        response.EnsureSuccessStatusCode();
     }
 }

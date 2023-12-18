@@ -9,6 +9,11 @@ using Oogarts.Server.Authentication;
 using Oogarts.Services;
 using Oogarts.Shared.Users.Patients;
 using Oogarts.Shared.Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using Microsoft.OpenApi.Models;
+using Client.Classes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,14 +25,52 @@ builder.Services.AddTransient <IEmailSender, EmailSender>();
 builder.Services.AddValidatorsFromAssemblyContaining<PatientDto.Mutate.Validator>();//??? For each DTO??
 builder.Services.AddFluentValidationAutoValidation();
 
+
 // Swagger | OAS 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
+	options.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
+	options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+	{
+		In = ParameterLocation.Header,
+		Description = "Please enter token",
+		Name = "Authorization",
+		Type = SecuritySchemeType.Http,
+		BearerFormat = "JWT",
+		Scheme = "bearer"
+	});
+
+	options.AddSecurityRequirement(new OpenApiSecurityRequirement
+	{
+		{
+			new OpenApiSecurityScheme
+			{
+				Reference = new OpenApiReference
+				{
+					Type=ReferenceType.SecurityScheme,
+					Id="Bearer"
+				}
+			},
+			new string[]{}
+		}
+	});
 	// Since we subclass our dto's we need a more unique id.
 	options.CustomSchemaIds(type => type.DeclaringType is null ? $"{type.Name}" : $"{type.DeclaringType?.Name}.{type.Name}");
 	options.EnableAnnotations();
 }).AddFluentValidationRulesToSwagger();
+
+
+//Auth0
+builder.Services.AddAuth0AuthenticationClient(config =>
+{
+	config.Domain = builder.Configuration["Auth0:Authority"];
+	config.ClientId = builder.Configuration["Auth0:ClientId"];
+	config.ClientSecret = builder.Configuration["Auth0:ClientSecret"];
+});
+
+builder.Services.AddAuth0ManagementClient().AddManagementAccessToken();
+
 
 // Database
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
@@ -43,9 +86,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 ); ;
 
 
-// (Fake) Authentication
-builder.Services.AddAuthentication("Fake Authentication")
-				.AddScheme<AuthenticationSchemeOptions, FakeAuthenticationHandler>("Fake Authentication", null);
+builder.Services.AddAuthentication(options =>
+{
+	options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+	options.Authority = builder.Configuration["Auth0:Authority"];
+	options.Audience = builder.Configuration["Auth0:ApiIdentifier"];
+	options.TokenValidationParameters = new TokenValidationParameters
+	{
+		NameClaimType = ClaimTypes.NameIdentifier
+	};
+});
 
 
 builder.Services.AddHttpContextAccessor();
@@ -81,6 +134,7 @@ app.UseStaticFiles();
 
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
 

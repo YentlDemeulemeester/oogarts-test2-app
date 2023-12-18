@@ -1,4 +1,6 @@
-﻿using Oogarts.Client.Extensions;
+﻿using Client.Classes;
+using Microsoft.AspNetCore.Components;
+using Oogarts.Client.Extensions;
 using Shared.Articles;
 using System.Net.Http.Json;
 
@@ -6,23 +8,30 @@ namespace Client.Articles
 {
     public class ArticleService : IArticleService
     {
-        private readonly HttpClient client;
+        private readonly PublicClient publicClient;
+        private readonly HttpClient authenticatedClient;
         private const string endpoint = "api/Article";
-        public ArticleService(HttpClient client)
+        public ArticleService(HttpClient authenticatedClient, PublicClient publicClient)
         {
-            this.client = client;
+            this.authenticatedClient = authenticatedClient;
+            this.publicClient = publicClient;
         }
 
         public async Task<ArticleResult.Index> GetIndexAsync(ArticleRequest.Index request)
         {
-            var response = await client.GetFromJsonAsync<ArticleResult.Index>($"{endpoint}?{request.AsQueryString()}");
+            var response = await publicClient.Client.GetFromJsonAsync<ArticleResult.Index>($"{endpoint}?{request.AsQueryString()}");
             return response!;
         }
 
         public async Task<ArticleResult.Create> CreateAsync(ArticleDto.Mutate model)
         {
-            var response = await client.PostAsJsonAsync(endpoint, model);
+            var response = await authenticatedClient.PostAsJsonAsync(endpoint, model);
             return await response.Content.ReadFromJsonAsync<ArticleResult.Create>();
+        }
+
+        public async Task DeleteAsync(long id)
+        {
+            await authenticatedClient.DeleteAsync($"{endpoint}/{id}");
         }
     }
 }

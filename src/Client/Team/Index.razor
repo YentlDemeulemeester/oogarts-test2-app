@@ -2,48 +2,73 @@
 
 <PageTitle>Team</PageTitle>
 
-<div class="team">
-	<svg class="bg-circle" width="529" height="504" viewBox="0 0 529 504" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<ellipse cx="264.5" cy="252" rx="264.5" ry="252" fill="#D8F7F7" />
-	</svg>
-	<svg class="bg-circle" width="234" height="235" viewBox="0 0 234 235" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<ellipse cx="117" cy="117.5" rx="117" ry="117.5" fill="#C4F1F1" />
-	</svg>
-	<div class="team header">
-		<h3>Ons Team</h3>
-		<p>
-			Ons ervaren team van oogartsen zijn gepassioneerd en toegewijd aan uw visuele gezondheid. Of het nu gaat om een eenvoudige controle of een complexe procedure, vertrouw op onze experts voor hoogwaardige zorg en een heldere, gezonde visie.
-		</p>
-	</div>
-	<div class="doctors flex">
-		<h4>Oogartsen</h4>
-		<div class="team specialisation flex">
-			@for (int i = 0; i <= 4; i++)
+@if (groups is null || employees is null)
+{
+    <Loader/>
+}
+else
+{
+	<div class="team">
+		<div class="team header">
+			<h3 @onclick="ToggleAdmin">Ons Team</h3>
+			<p>
+				Onze ervaren team van oogartsen zijn gepassioneerd en toegewijd aan uw visuele gezondheid. Of het nu gaat om een eenvoudige controle of een complexe procedure, vertrouw op onze experts voor hoogwaardige zorg en een heldere, gezonde visie.
+			</p>
+			@if (admin)
 			{
-				<TeamMemberCard ImageUrl="@Images[i]" Function="@Function[i]" Name="@Name[i]" Id="@i"/>
+				<div class="add-header">
+					<button class="create" @onclick="NavigateToCreateEmployee">
+						<img src="./images/plus.svg" alt="add" title="Voeg een medewerker toe" />
+						Voeg een medewerker toe
+					</button>
+					<button class="create" @onclick="NavigateToCreateGroup">
+						<img src="./images/plus.svg" alt="add" title="Voeg groep toe" />
+						Voeg een groep toe
+					</button>
+					<button class="create" @onclick="NavigateToEditGroup">
+						<img src="./images/plus.svg" alt="add" title="Wijzig groepen" />
+						Wijzig groepen
+					</button>
+				</div>
 			}
+			<img class="bg-circle" src="./images/Ellipse 12.svg" alt="background bol"/>
+			<img class="bg-circle" src="./images/Ellipse 13.svg" alt="background bol" />
 		</div>
-		<svg class="doctor-bg-circle" xmlns="http://www.w3.org/2000/svg" width="205" height="205" viewBox="0 0 205 205" fill="none">
-			<circle cx="102.5" cy="102.5" r="102.5" fill="#C8EDED" />
-		</svg>
-		<svg class="doctor-bg-circle" xmlns="http://www.w3.org/2000/svg" width="85" height="84" viewBox="0 0 85 84" fill="none">
-			<ellipse cx="42.5" cy="42" rx="42.5" ry="42" fill="#DAF7F7" />
-		</svg>
-	</div>
-	<div class="doctors flex">
-		<h4>Medewerkers</h4>
-		<div class="team specialisation flex">
-			@for (int i = 1; i <= 4; i++)
+		<div class="doctors flex">
+			@foreach (var group in groups)
 			{
-				<TeamMemberCard ImageUrl="@Images[i]" Function="@Function[i]" Name="@Name[i]" Id="@i" />
+				<GroupCard Group="group" Admin="@admin" DeleteGroup="RequestDeleteGroup" />
+
+				var employeesInGroup = employees.Where(e => e.Group is not null && e.Group.Id == group.Id).ToList();
+
+				if (group.Id == 2 && !employeesInGroup.Any())
+				{
+					<p class="no-employees">
+						Momenteel geen medewerkers verkrijgbaar.
+					</p>
+				}
+				else if (employeesInGroup.Any())
+				{
+					<div class="team specialisation flex">
+						@foreach (var employee in employeesInGroup)
+						{
+							<EmployeeCard ImageUrl="@Images[1]" Employee="employee" Admin="@admin" ToggleDelete="ToggleEmployeeDelete" SelectMoveEmployee="RequestMoveEmployee" />
+						}
+					</div>
+				}
+				else
+				{
+					<p class="no-employees">
+						Geen medewerkers in deze groep.
+					</p>
+				}
 			}
+
 		</div>
-		<svg class="doctor-bg-circle" xmlns="http://www.w3.org/2000/svg" width="205" height="205" viewBox="0 0 205 205" fill="none">
-			<circle cx="102.5" cy="102.5" r="102.5" fill="#C8EDED" />
-		</svg>
-		<svg class="doctor-bg-circle" xmlns="http://www.w3.org/2000/svg" width="85" height="84" viewBox="0 0 85 84" fill="none">
-			<ellipse cx="42.5" cy="42" rx="42.5" ry="42" fill="#DAF7F7" />
-		</svg>
+		<DeletePopUp Open="@openDelete" ObjectName="groep" ToggleClose="CancelDeleteGroup" RequestDelete="ConfirmDeleteGroup" />
+		<InfoPopUp Open="@openInfo" Message="Zorg ervoor dat de groep leeg is alvorens deze te verwijderen!" ToggleClose="ToglleInfoPopUp" />
+		<ConfirmationPopUp Open="@openMove" ObjectHeader="Verplaats werknemer" ObjectBody="U staat op het punt om een werknemer te verplaatsen. Bent u zeker dat u verder wilt gaan?" ConfirmButtonContent="Ja, Verplaats" ToggleClose="CloseMoveInfo" RequestConfirm="ConfirmMoveEmployee" />
+		<DeletePopUp Open="@open" ObjectName="werknemer" ToggleClose="CloseDeletePopUp" RequestDelete="ConfirmDelete" />
+		<Footer />
 	</div>
-</div>
-	
+}

@@ -8,6 +8,7 @@ namespace Server.Controllers.Articles
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
+    [Authorize(Roles = "Administrator")]
     public class ArticleController : Controller
     {
         private readonly IArticleService articleService;
@@ -24,7 +25,7 @@ namespace Server.Controllers.Articles
         }
 
         [SwaggerOperation("Creates an article.")]
-        [HttpPost, AllowAnonymous]
+        [HttpPost]
         public async Task<IActionResult> Create(ArticleDto.Mutate model)
         {
             var creationId = await articleService.CreateAsync(model);

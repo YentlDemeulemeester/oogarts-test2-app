@@ -9,8 +9,7 @@ internal class AvailabilityConfiguration : EntityConfiguration<Availability>
     {
         base.Configure(builder);
 
-        builder.Property(ec => ec.Day).IsRequired();
-        builder.Property(ec => ec.Start).IsRequired();
-        builder.Property(ec => ec.End).IsRequired();
+        builder.Property(ec => ec.StartDate).IsRequired();
+        builder.Property(ec => ec.EndDate).IsRequired();
     }
 }

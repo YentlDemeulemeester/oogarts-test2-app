@@ -7,6 +7,7 @@
     position: relative;
     width: 100%;
     height: 100%;
+    padding: 10px 0;
 }
 .team .bg-circle {
     position: absolute;
@@ -15,18 +16,16 @@
     z-index: -1000;
     top: -75px;
     left: -100px;
+    color: #98E9E9;
 }
 .team .bg-circle:nth-of-type(2) {
     z-index: -1001;
     top: 175px;
     left: 300px;
 }
-.team img {
-    width: 177px;
-    height: 250px;
-    flex-shrink: 0;
-    border-radius: 15px;
-    object-fit: cover;
+
+.no-employees{
+    margin-bottom: 50px;
 }
 
 .team .header h3 {
@@ -63,7 +62,7 @@
 }
 
 .team .specialisation {
-    gap: 20px;
+    gap: 10px;
 
     display: flex;
     align-items: center;
@@ -120,7 +119,6 @@
     z-index: -1001;
 }
 
-
 .doctors h4 {
     color: #000;
     font-family: Trirong;
@@ -154,6 +152,7 @@
     line-height: 154%; /* 27.72px */
 }
 
+/*
 .doctor .info p {
     color: #000;
     font-family: Poppins;
@@ -162,6 +161,78 @@
     font-style: normal;
     font-weight: 300;
     line-height: 105%;
+}*/
+
+.create {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 5px;
+    color: #000;
+    font-family: Trirong;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 112.9%; /* 18.064px */
+
+    border: none;
+    background: none;
+    outline: none;
+    transition: all 300ms ease-in-out;
+}
+
+.create:hover {
+    text-decoration: underline;
+}
+
+﻿div .request-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div .request {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div .requestButton {
+    border: none;
+    background: none;
+    outline: none;
+    color: #5C96C1;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 154%; /* 24.64px */
+    text-transform: uppercase;
+}
+
+.delete_button {
+    width: 30px;
+    height: 30px;
+    
+}
+
+.delete_button  img {
+    /*width: 20px;
+    height: 20px;*/
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 @media only screen and (max-width: 1200px) {
     .doctors .doctor-bg-circle:first-of-type {
@@ -220,4 +291,18 @@
         top: 175px;
         left: 50px;
     }
+}
+.team .header .add-header button img {
+    width: 15px;
+    height: 15px;
+}
+.team .header .add-header button {
+    font-weight: 500;
+}
+.add-header {
+    display: flex;
+    gap: 25px;
+    margin-top: 15px; 
+
+    flex-wrap: wrap;
 }

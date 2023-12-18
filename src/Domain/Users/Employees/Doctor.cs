@@ -1,4 +1,5 @@
-﻿using Domain.Users.Employees.Availabilities;
+﻿using Domain.Users.Employees;
+using Domain.Users.Employees.Availabilities;
 using Oogarts.Domain.Appointments;
 
 namespace Oogarts.Domain.Users.Doctors;
@@ -16,13 +17,16 @@ public class Doctor : Employee
 	//Database constructor
 	private Doctor() { }
 
-	public Doctor(string firstname, string lastname, DateOnly birthdate, string phonenumber, string email)
+	public Doctor(string firstname, string lastname, string image,  DateTime birthdate, string phonenumber, string email, Group group)
 	{
 		FirstName = firstname;
 		LastName = lastname;
+		Image = image;
 		PhoneNumber = phonenumber;
 		Email = email;
 		Birthdate = birthdate;
+		Group = group;
+		//Bio = bio;
 	}
 
 	public void Specialization(Specialization specialization)
@@ -61,12 +65,12 @@ public class Doctor : Employee
 			} else
 			{
 				//Verify if doctor is available during timeslot
-				var a = avs.Find(x => x.Day.ToString().Equals(timeslot.Time.ToString("dd/M/yyyy")));
+				var a = avs.Find(x => x.StartDate.Date.ToString().Equals(timeslot.Time.ToString("dd/M/yyyy")));
 
-				if (a is null || a.Start.ToTimeSpan() > timeslot.Time.TimeOfDay || a.End.ToTimeSpan() < timeslot.Time.TimeOfDay)
-				{
-					throw new ApplicationException($"{nameof(Doctor)} '{FirstName}' '{LastName}' is not available during one or more of these timeslots");
-				}
+				//if (a is null || a.StartDate.TimeOfDay > timeslot.Time.TimeOfDay || a.EndDate.TimeOfDay < timeslot.Time.TimeOfDay)
+				//{
+				//	throw new ApplicationException($"{nameof(Doctor)} '{FirstName}' '{LastName}' is not available during one or more of these timeslots");
+				//}
 			}
 		}
 

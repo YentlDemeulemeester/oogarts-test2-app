@@ -1,15 +1,17 @@
-﻿@inherits LayoutComponentBase
+@using Client.Admin.Components
+@inherits LayoutComponentBase
 <PageTitle>Oogarts</PageTitle>
 
 <div class="page">
-    <nav>
+    @if (!isAdminPage)
+    {
         <NavBar />
-    </nav>
-    <section class="section">
-        <div class="body-container">
+    }
+    <main>
+        <article>
             @Body
-        </div>
-    </section>
+        </article>   
+    </main>
     <Chatbot />
 </div>
 <RadzenComponents />

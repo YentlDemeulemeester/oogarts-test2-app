@@ -1,4 +1,6 @@
+using Domain.Users.Employees;
 using Domain.Users.Employees.Availabilities;
+using System.Text.Json.Serialization;
 
 namespace Oogarts.Domain.Users.Doctors;
 
@@ -17,9 +19,14 @@ public abstract class Employee : Entity {
 		get => last_name;
 		set => last_name = Guard.Against.NullOrWhiteSpace(value, nameof(last_name));
 	}
-	
-	private DateOnly birthdate = default!;
-	public DateOnly Birthdate
+    private string image = default!;
+    public string Image
+    {
+        get => image;
+        set => image = Guard.Against.NullOrWhiteSpace(value, nameof(image));
+    }
+    private DateTime birthdate = default!;
+	public DateTime Birthdate
 	{
 		get => birthdate;
 		set => birthdate = Guard.Against.Null(value, nameof(birthdate));
@@ -42,15 +49,28 @@ public abstract class Employee : Entity {
     private readonly List<Availability> availabilities = new();
     public IReadOnlyCollection<Availability> Availabilities => availabilities.AsReadOnly();
 
+	private Group group = default!;
+	public Group Group
+	{
+		get => group;
+		set => group = Guard.Against.Null(value, nameof(value));
+	}
 
-    //Database constructor????
-    protected Employee() { }
+	private Bio? bio = default!;
+	public Bio? Bio
+	{
+		get => bio;
+		set => bio = value;
+	}
+
+	//Database constructor????
+	protected Employee() { }
 
 	public void Availability(Availability availability)
 	{
 		Guard.Against.Null(availability, nameof(availability));
 
-		if (availabilities.Exists(a => a.Day.Equals(availability.Day)))
+		if (availabilities.Exists(a => a.StartDate.Date.Equals(availability.StartDate.Date)))
 		{
 			throw new ApplicationException($"{nameof(Availability)} '{FirstName}' '{LastName}' already contains an availability for this day");
 		}

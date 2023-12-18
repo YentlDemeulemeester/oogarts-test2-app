@@ -9,6 +9,7 @@ namespace Oogarts.Server.Controllers.Appointments;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
+[Authorize(Roles = "Administrator")]
 public class AppointmentController : ControllerBase
 {
     //private readonly IAppointmentService appointmentService;

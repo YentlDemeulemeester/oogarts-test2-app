@@ -10,7 +10,7 @@
 		@if (IsAdmin)
 		{
 			<div class="buttons">
-				<button class="edit_button">
+				<button class="edit_button" @onclick="OpenInfo">
 					<img src="./images/edit-2.svg" alt="edit button" title="Edit Oogaandoening" />
 				</button>
 				<button class="delete_button" @onclick="RequestDelete">
@@ -21,16 +21,3 @@
 		<button @onclick="NavigateToDetail">LEES MEER</button>
 	</div>
 </div>
-
-@code {
-    private bool isRequestingDelete = false;
-
-    private void RequestDelete()
-    {
-        OnDeleteRequested.InvokeAsync(EyeCondition.Id);
-    }
-    private void NavigateToDetail()
-    {
-        NavigationManager.NavigateTo($"Oogaandoening/{EyeCondition.Id}");
-    }
-}

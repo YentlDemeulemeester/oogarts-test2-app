@@ -13,11 +13,17 @@ public partial class Index
     private IEnumerable<SymptomDto.Index>? symptoms;
 
     private bool admin = false;
+    private bool open = false;
+    private bool openInfo = false;
+
+    private long deleteRequestId = default;
 
     [Parameter, SupplyParameterFromQuery] public string? Searchterm { get; set; }
     [Parameter, SupplyParameterFromQuery] public int? Page { get; set; }
     [Parameter, SupplyParameterFromQuery] public int? PageSize { get; set; }
     [Parameter, SupplyParameterFromQuery] public long? SymptomId { get; set; }
+
+
 
     protected override async Task OnParametersSetAsync()
 	{
@@ -50,4 +56,26 @@ public partial class Index
             NavigationManager.NavigateTo($"Oogaandoeningen/nieuw");
         }
     }
+    private void ToggleDeletePopUp(long id)
+    {
+        open = !open;
+        deleteRequestId = id;
+    }
+    private void CloseDeletePopUp()
+    {
+        open = false;
+        deleteRequestId = default;
+    }
+
+    private async Task ConfirmDelete()
+    {
+        await EyeConditionService.DeleteAsync(deleteRequestId);
+        NavigationManager.NavigateTo("Oogaandoeningen",true);
+    }
+
+    private void ToglleInfoPopUp()
+    {
+        openInfo = !openInfo;
+    }
+
 }

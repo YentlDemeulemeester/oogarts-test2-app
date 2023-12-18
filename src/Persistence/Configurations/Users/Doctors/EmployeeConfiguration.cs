@@ -1,4 +1,6 @@
+using Domain.Users.Employees;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Oogarts.Domain.Users.Doctors;
 using Oogarts.Domain.Users.Employees;
@@ -25,5 +27,9 @@ internal class EmployeeConfiguration : EntityConfiguration<Employee>
 
 		builder.HasMany(x => x.Availabilities)
 			.WithOne();
+
+		builder.HasOne(x => x.Bio)
+			.WithOne(x => x.Employee)
+			.HasForeignKey<Bio>(x => x.Id);
 	}
 }

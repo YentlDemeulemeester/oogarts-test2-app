@@ -8,6 +8,15 @@ using Client.Articles;
 using Radzen;
 using Client.Files;
 using Client.Symptoms;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Client.Classes;
+using Client.Admin.Services;
+using Oogarts.Shared.Users.Doctors.Employees;
+using Oogarts.Client.Team;
+using Oogarts.Shared.Users.Team.Doctors;
+using Shared.Users.Teams.Groups;
+using Client.Team;
+using Shared.Users.Teams.Biographies;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -19,16 +28,30 @@ builder.Services.AddRadzenComponents();
 //builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<FakeAuthenticationProvider>());
 //builder.Services.AddTransient<FakeAuthorizationMessageHandler>();
 
-builder.Services.AddHttpClient("Project.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
-				//.AddHttpMessageHandler<FakeAuthorizationMessageHandler>();
+builder.Services.AddHttpClient("Project.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+	.AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("Project.ServerAPI"));
 
+builder.Services.AddHttpClient<PublicClient>(client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+
+builder.Services.AddOidcAuthentication(options =>
+{
+	builder.Configuration.Bind("Auth0", options.ProviderOptions);
+	options.ProviderOptions.ResponseType = "code";
+	options.ProviderOptions.AdditionalProviderParameters.Add("audience", builder.Configuration["Auth0:Audience"]);
+}).AddAccountClaimsPrincipalFactory<ArrayClaimsPrincipalFactory<RemoteUserAccount>>();
 
 builder.Services.AddScoped<IEyeConditionService, EyeConditionService>();
 builder.Services.AddScoped<ISymptomService, SymptomService>();
 builder.Services.AddScoped<IArticleService, ArticleService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();
+builder.Services.AddScoped<IGroupService, GroupService>();
+builder.Services.AddScoped<IBioService, BioService>();
+
 builder.Services.AddHttpClient<IStorageService, AzureBlobStorageService>();
+builder.Services.AddSingleton<NavService>();
 
 await builder.Build().RunAsync();
 

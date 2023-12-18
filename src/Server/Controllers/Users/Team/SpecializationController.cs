@@ -10,6 +10,7 @@ namespace Oogarts.Server.Controllers.Users.Doctors;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
+[Authorize(Roles = "Administrator")]
 public class SpecializationController : ControllerBase
 {
 	private readonly ISpecializationService specializationService;
