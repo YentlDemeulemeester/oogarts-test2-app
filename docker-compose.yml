@@ -24,7 +24,7 @@ services:
       dockerfile: Dockerfile
     container_name: oogarts_container
     ports:
-      - '8080:80'
+      - '5050:80'
     environment:
       DOTNET_ENVIRONMENT: Production
       DOTNET_ConnectionStrings__MySql: Database=oogarts;Uid=devusr;Pwd=devpwd;Server=mysql;
