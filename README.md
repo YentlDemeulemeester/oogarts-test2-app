@@ -3,7 +3,7 @@
 ## Group
 
 - Project: Oogarts
-- Group number: 05d
+- Group number: 05
 
 ## Team members
 
