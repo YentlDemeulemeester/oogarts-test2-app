@@ -25,7 +25,7 @@ RUN dotnet restore src/Persistence/Persistence.csproj
 RUN dotnet restore src/Server/Server.csproj
 RUN dotnet restore src/Services/Services.csproj
 RUN dotnet restore src/Shared/Shared.csproj
-RUN dotnet restore Testing/Testing.csproj ./Testing/Testing.csproj
+RUN dotnet restore Testing/Testing.csproj 
 
 # Kopieren van de rest van de applicatie naar de container
 COPY . ./
