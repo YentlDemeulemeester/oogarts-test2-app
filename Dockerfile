@@ -14,7 +14,7 @@ COPY src/Persistence/Persistence.csproj ./src/Persistence/Persistence.csproj
 COPY src/Server/Server.csproj ./src/Server/Server.csproj
 COPY src/Services/Services.csproj ./src/Services/Services.csproj
 COPY src/Shared/Shared.csproj ./src/Shared/Shared.csproj
-COPY tests/Domain.Tests/Domain.Tests.csproj ./tests/Domain.Tests/Domain.Tests.csproj
+COPY Testing/Testing.csproj ./Testing/Testing.csproj
 
 # Restore van de packages
 RUN dotnet restore Oogarts.csproj
@@ -25,7 +25,7 @@ RUN dotnet restore src/Persistence/Persistence.csproj
 RUN dotnet restore src/Server/Server.csproj
 RUN dotnet restore src/Services/Services.csproj
 RUN dotnet restore src/Shared/Shared.csproj
-RUN dotnet restore tests/Domain.Tests/Domain.Tests.csproj
+RUN dotnet restore Testing/Testing.csproj ./Testing/Testing.csproj
 
 # Kopieren van de rest van de applicatie naar de container
 COPY . ./
