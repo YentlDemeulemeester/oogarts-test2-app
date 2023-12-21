@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Oogarts.Shared.EyeConditions;
-using Oogarts.Client.EyeConditions;
+using Shared.EyeConditions;
+using Client.EyeConditions;
 using Client;
 using Shared.Articles;
 using Client.Articles;
@@ -11,12 +11,12 @@ using Client.Symptoms;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Client.Classes;
 using Client.Admin.Services;
-using Oogarts.Shared.Users.Doctors.Employees;
-using Oogarts.Client.Team;
-using Oogarts.Shared.Users.Team.Doctors;
-using Shared.Users.Teams.Groups;
+using Shared.Users.Doctors.Employees;
 using Client.Team;
+using Shared.Users.Team.Doctors;
+using Shared.Users.Teams.Groups;
 using Shared.Users.Teams.Biographies;
+using Client.Admin.Components.Team;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -49,6 +49,7 @@ builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IDoctorService, DoctorService>();
 builder.Services.AddScoped<IGroupService, GroupService>();
 builder.Services.AddScoped<IBioService, BioService>();
+builder.Services.AddScoped<TeamService>();
 
 builder.Services.AddHttpClient<IStorageService, AzureBlobStorageService>();
 builder.Services.AddSingleton<NavService>();

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oogarts.Shared.Infrastructure;
+namespace Shared.Infrastructure;
 
 public interface IEmailSender
 {

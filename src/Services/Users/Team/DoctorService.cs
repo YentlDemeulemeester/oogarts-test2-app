@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Oogarts.Domain.Users.Doctors;
-using Oogarts.Persistence;
-using Oogarts.Shared.Appointments.Timeslots;
-using Oogarts.Shared.Users.Doctors.Availabilities;
-using Oogarts.Shared.Users.Doctors.Specializations;
-using Oogarts.Shared.Users.Team.Doctors;
+using Domain.Users.Doctors;
+using Persistence;
+using Shared.Appointments.Timeslots;
+using Shared.Users.Doctors.Availabilities;
+using Shared.Users.Doctors.Specializations;
+using Shared.Users.Team.Doctors;
 using Shared.Users.Teams.Groups;
 
-namespace Oogarts.Services.Users.Team;
+namespace Services.Users.Team;
 
 public class DoctorService : IDoctorService
 {

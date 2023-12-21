@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Oogarts.Domain.EyeConditions;
-using Oogarts.Persistence.Configurations;
+using Domain.EyeConditions;
+using Persistence.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;

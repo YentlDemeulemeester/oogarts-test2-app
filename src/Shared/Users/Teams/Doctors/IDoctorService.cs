@@ -1,4 +1,4 @@
-﻿namespace Oogarts.Shared.Users.Team.Doctors;
+﻿namespace Shared.Users.Team.Doctors;
 
 public interface IDoctorService
 {

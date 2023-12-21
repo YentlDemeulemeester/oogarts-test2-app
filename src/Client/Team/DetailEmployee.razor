@@ -52,19 +52,12 @@ else
                     <h5>
                         Weekuren
                     </h5>
-                    @if (employee.Availabilities is not null)
+                    @if (employee.Availabilities is not null && employee.Availabilities.Any())
                     {
                        <ul>
                             @foreach (var day in employee.Availabilities)
                             {
-                                // Determine the start and end of the current week
-                                var today = DateTime.Today;
-                                var startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
-                                var endOfWeek = startOfWeek.AddDays(6);
 
-                                // Check if the start date of the availability is within this week
-                                if (day.StartDate.Date >= startOfWeek.Date && day.StartDate.Date <= endOfWeek.Date)
-                                {
                                     <li>
                                         <span>@day.StartDate.ToString("ddd dd/MM/yyyy")</span>
                                         <span>
@@ -73,14 +66,10 @@ else
                                             <span class="hour">@day.EndDate.ToString("HH:mm")</span>
                                         </span>
                                     </li>
-                                }
                             }
                         </ul>
 
-                    } else
-                    {
-                        <p>Geen werkuren beschikbaar.</p>
-                    }
+                    } 
 
                 </div>
             </div>

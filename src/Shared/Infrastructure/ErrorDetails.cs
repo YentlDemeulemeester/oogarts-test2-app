@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 
-namespace Oogarts.Shared.Infrastructure;
+namespace Shared.Infrastructure;
 
 /// <summary>
 /// Error returned by the <see cref="ExceptionMiddleware"/> when an <see cref="Exception"/> is thrown.

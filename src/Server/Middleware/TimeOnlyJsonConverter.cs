@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using System.Text.Json;
 
-namespace Oogarts.Server.Middleware;
+namespace Server.Middleware;
 
 public class TimeOnlyJsonConverter : JsonConverter<TimeOnly>
 {

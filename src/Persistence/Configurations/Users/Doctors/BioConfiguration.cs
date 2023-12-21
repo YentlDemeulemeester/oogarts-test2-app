@@ -1,8 +1,8 @@
 ﻿using Domain.Users.Employees;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Oogarts.Domain.Users.Doctors;
-using Oogarts.Persistence.Configurations;
+using Domain.Users.Doctors;
+using Persistence.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;

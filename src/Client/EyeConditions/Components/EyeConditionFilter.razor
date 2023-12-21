@@ -1,13 +1,15 @@
 ﻿﻿﻿<div class="filters">
     <div class="field">
 		<div class="select is-fullwidth">
-			<select @onchange="TagChanged">
+            <RadzenDropDown TItem="string" Data="@symptomDict" Multiple=true @bind-Value="@SymptomIds" Change="TagChanged" Chips=true
+                            Placeholder="Selecteer symptomen" SelectAllText="Selecteer alle symptomen" TextProperty="Value" ValueProperty="Key" />
+@* 			<select @onchange="TagChanged">
 				<option value="">Selecteer</option>
 				@foreach (var symptom in symptoms)
 				{
 					<option value=@symptom.Id>@symptom.Name</option>
 				}
-			</select>
+			</select> *@
 		</div>
 	</div>
     <div class="field">

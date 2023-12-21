@@ -8,13 +8,11 @@
         <div class="information">
             <h1>Welkom bij <br /><strong>Vision Oogcentrum</strong></h1>
             <p class="mt-3">Vision Oogcentrum heet u van harte welkom in onze oogartspraktijk in Gent. Met grote toewijding bieden we gespecialiseerde oogzorg aan, met een focus op uw gezondheid en welzijn.</p>
-            <div class="d-flex flex-row align-items-center mt-5 buttons">
-                <button class="afspraakButton">Afspraak maken</button>
-                <a class="contactLink" href="#">
+            <div class="buttons">
+                <button class="afspraakButton" @onclick="NavigateAppointments">Afspraak maken</button>
+                <a class="contactLink" href="/Contact">
                     Contacteer ons
-                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="9" viewBox="0 0 19 9" fill="none">
-                        <path d="M18.8536 4.85355C19.0488 4.65829 19.0488 4.34171 18.8536 4.14645L15.6716 0.964466C15.4763 0.769204 15.1597 0.769204 14.9645 0.964466C14.7692 1.15973 14.7692 1.47631 14.9645 1.67157L17.7929 4.5L14.9645 7.32843C14.7692 7.52369 14.7692 7.84027 14.9645 8.03553C15.1597 8.2308 15.4763 8.2308 15.6716 8.03553L18.8536 4.85355ZM0.5 5H18.5V4H0.5V5Z" fill="black" />
-                    </svg>
+                    <img class="icon" src="./images/Arrow.svg" alt="Arrow" />
                 </a>
             </div>
             <div class="d-flex flex-row contactInfo">

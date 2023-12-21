@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Oogarts.Domain.EyeConditions;
-using Oogarts.Persistence;
-using Oogarts.Shared.EyeConditions;
+using Domain.EyeConditions;
+using Persistence;
+using Shared.EyeConditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

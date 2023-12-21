@@ -1,8 +1,8 @@
 ﻿using Domain.Users.Employees;
 using Domain.Users.Employees.Availabilities;
-using Oogarts.Domain.Appointments;
+using Domain.Appointments;
 
-namespace Oogarts.Domain.Users.Doctors;
+namespace Domain.Users.Doctors;
 public class Doctor : Employee
 {
 	private readonly List<Specialization> specializations = new();

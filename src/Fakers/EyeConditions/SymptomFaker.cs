@@ -1,4 +1,4 @@
-﻿using Oogarts.Domain.EyeConditions;
+﻿using Domain.EyeConditions;
 using System;
 
 

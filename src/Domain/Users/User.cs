@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Oogarts.Domain.Users;
+namespace Domain.Users;
 
 public class User : Entity {
 

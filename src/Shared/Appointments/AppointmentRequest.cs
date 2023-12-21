@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oogarts.Shared.Appointments;
+namespace Shared.Appointments;
 
 public abstract class AppointmentRequest
 {

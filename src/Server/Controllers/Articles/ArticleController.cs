@@ -32,5 +32,19 @@ namespace Server.Controllers.Articles
             return CreatedAtAction(nameof(Create), creationId);
         }
 
+        [SwaggerOperation("Returns a specific article.")]
+        [HttpGet("{Id}"), AllowAnonymous]
+        public async Task<ArticleDto.Detail> GetDetails(long Id) {
+            return await articleService.GetDetailAsync(Id);
+        }
+
+        [SwaggerOperation("Deletes an existing article.")]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            await articleService.DeleteAsync(id);
+            return NoContent();
+        }
+
     }
 }

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace Oogarts.Domain.Users.Patients;
+namespace Domain.Users.Patients;
 public class Patient : Entity {
 
     private string first_name = default!;

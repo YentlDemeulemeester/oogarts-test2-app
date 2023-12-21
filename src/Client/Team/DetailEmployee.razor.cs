@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Oogarts.Shared.Users.Doctors.Employees;
+using Shared.Users.Doctors.Employees;
 using Shared.Users.Teams.Biographies;
 
 namespace Client.Team;
@@ -58,17 +58,6 @@ public partial class DetailEmployee
             NavigationManager.NavigateTo($"Team/Medewerker/Edit/{Id}");
         }
     }
-
-    // private TeamMember member;
-
-    private readonly List<string> images = new List<string> {
-        "/images/doctor1.jpg", "/images/doctor2.jpg", "/images/doctor3.jpg", "/images/doctor4.jpg", "/images/doctor5.jpg", "/images/doctor6.png", "/images/doctor7.png" };
-    private readonly List<string> function = new List<string> {
-        "Oogarts (Algemeen)", "Cornea-specialist", "Cornea-specialist", "Orthoptist", "Orthoptist", "Orthoptist", "Cornea-specialist" };
-    private readonly List<string> name = new List<string> {
-        "Dr. Emily Patel", "Dr. Sarah Mitchell", "Dr. Laura Ramirez", "Dr. James Anderson", "Dr. Ramin Doker", "Dr. David Wilson", "Michael Chang" };
-
-
     private void GoBack()
     {
         NavigationManager.NavigateTo($"Team");

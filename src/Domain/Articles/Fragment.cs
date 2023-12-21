@@ -1,4 +1,4 @@
-﻿namespace Oogarts.Domain.Articles.Fragments;
+﻿namespace Domain.Articles.Fragments;
 
 public class Fragment : Entity {
 

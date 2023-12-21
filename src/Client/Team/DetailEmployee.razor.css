@@ -76,6 +76,18 @@
     position: relative;
 }
 
+@media only screen and (max-width: 875px) {
+    .doctor-details .content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+@media only screen and (max-width: 475px) {
+    .doctor-details .content img {
+        height: 375px !important;
+
+    }
+}
 .doctor-details .content .right-col{
     width: 100%;
     position: relative;
@@ -83,7 +95,7 @@
 
 .doctor-details .content img {
     border-radius: 15px;
-    width: 375px;
+    max-width: 375px;
     height: 575px;
     object-fit: cover;
 }

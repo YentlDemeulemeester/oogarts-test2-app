@@ -1,4 +1,4 @@
-﻿namespace Oogarts.Shared.EyeConditions;
+﻿namespace Shared.EyeConditions;
 
 public abstract class EyeConditionResult
 {

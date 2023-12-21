@@ -1,4 +1,4 @@
-﻿using Oogarts.Domain.Users.Patients;
+﻿using Domain.Users.Patients;
 
 namespace Fakers.Patients;
 public class PatientFaker : EntityFaker<Patient>

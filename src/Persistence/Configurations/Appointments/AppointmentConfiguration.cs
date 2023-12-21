@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Oogarts.Domain.Appointments;
+using Domain.Appointments;
 
-namespace Oogarts.Persistence.Configurations.Appointments;
+namespace Persistence.Configurations.Appointments;
 internal class AppointmentConfiguration : EntityConfiguration<Appointment>
 {
 	public override void Configure(EntityTypeBuilder<Appointment> builder)

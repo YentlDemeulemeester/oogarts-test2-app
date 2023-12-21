@@ -1,16 +1,16 @@
 using Domain.Users.Employees.Availabilities;
 using Microsoft.EntityFrameworkCore;
-using Oogarts.Domain.Appointments;
-using Oogarts.Domain.Articles;
-using Oogarts.Domain.Articles.Fragments;
-using Oogarts.Domain.EyeConditions;
-using Oogarts.Domain.Users.Doctors;
-using Oogarts.Domain.Users.Patients;
-using Oogarts.Persistence.Triggers;
+using Domain.Appointments;
+using Domain.Articles;
+using Domain.Articles.Fragments;
+using Domain.EyeConditions;
+using Domain.Users.Doctors;
+using Domain.Users.Patients;
+using Persistence.Triggers;
 using System.Reflection;
 using Domain.Users.Employees;
 
-namespace Oogarts.Persistence;
+namespace Persistence;
 
 public class ApplicationDbContext : DbContext
 {

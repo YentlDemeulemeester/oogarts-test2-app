@@ -1,7 +1,7 @@
 ﻿.news {
     position: relative;
     width: 100%;
-    min-height: calc(100vh - 155px);
+    
     display: flex;
     flex-direction: column;
     gap: 65px;
@@ -46,4 +46,6 @@
 }
 .news .content {
     margin-bottom: 25px;
+
+    min-height: calc(100vh - 180px - 300px - 65px);
 }

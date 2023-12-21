@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Oogarts.Shared.EyeConditions;
+using Shared.EyeConditions;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Server.Controllers.EyeConditions;

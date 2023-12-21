@@ -1,11 +1,11 @@
-﻿using Oogarts.Shared.EyeConditions;
+﻿using Shared.EyeConditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oogarts.Shared.EyeConditions;
+namespace Shared.EyeConditions;
 
 public abstract class SymptomResult
 {

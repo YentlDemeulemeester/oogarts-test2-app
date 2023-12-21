@@ -1,6 +1,6 @@
-using Oogarts.Domain.Articles.Fragments;
+using Domain.Articles.Fragments;
 
-namespace Oogarts.Domain.Articles;
+namespace Domain.Articles;
 
 public class Article : Entity {
 

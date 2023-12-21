@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Oogarts.Shared.Appointments;
+using Shared.Appointments;
 
 namespace Client.Appointment.Components {
 	public partial class AppointmentForm {

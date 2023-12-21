@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Oogarts.Persistence;
-using Oogarts.Shared.Users.Patients;
+using Persistence;
+using Shared.Users.Patients;
 
 namespace Services.Users.Patients;
 public class PatientService : IPatientService

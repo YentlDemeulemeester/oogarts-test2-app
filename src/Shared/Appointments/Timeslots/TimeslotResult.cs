@@ -1,4 +1,4 @@
-﻿namespace Oogarts.Shared.Appointments.Timeslots;
+﻿namespace Shared.Appointments.Timeslots;
 
 public abstract class TimeslotResult
 {

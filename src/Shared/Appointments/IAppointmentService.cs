@@ -1,4 +1,4 @@
-namespace Oogarts.Shared.Appointments;
+namespace Shared.Appointments;
 public interface IAppointmentService
 {
 	Task<AppointmentResult.Index> GetIndexAsync(AppointmentRequest.Index request);

@@ -1,7 +1,7 @@
 ﻿using Domain.Users.Employees;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Oogarts.Persistence.Configurations;
+using Persistence.Configurations;
 
 namespace Persistence.Configurations.Users.Doctors;
 

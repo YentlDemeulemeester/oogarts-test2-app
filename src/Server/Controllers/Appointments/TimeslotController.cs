@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Oogarts.Shared.Appointments.Timeslots;
+using Shared.Appointments.Timeslots;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Oogarts.Server.Controllers.Appointments;
+namespace Server.Controllers.Appointments;
 
 [ApiController]
 [Route("api/[controller]")]

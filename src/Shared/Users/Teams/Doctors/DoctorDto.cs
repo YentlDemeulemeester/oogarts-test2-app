@@ -1,9 +1,9 @@
-﻿using Oogarts.Shared.Appointments.Timeslots;
-using Oogarts.Shared.Users.Doctors.Availabilities;
-using Oogarts.Shared.Users.Doctors.Specializations;
+﻿using Shared.Appointments.Timeslots;
+using Shared.Users.Doctors.Availabilities;
+using Shared.Users.Doctors.Specializations;
 using Shared.Users.Teams.Groups;
 
-namespace Oogarts.Shared.Users.Team.Doctors;
+namespace Shared.Users.Team.Doctors;
 
 public abstract class DoctorDto
 {

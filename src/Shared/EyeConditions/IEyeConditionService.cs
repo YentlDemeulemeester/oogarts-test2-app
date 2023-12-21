@@ -1,4 +1,4 @@
-namespace Oogarts.Shared.EyeConditions;
+namespace Shared.EyeConditions;
 public interface IEyeConditionService
 {
     Task<EyeConditionResult.Index> GetIndexAsync(EyeConditionRequest.Index request);

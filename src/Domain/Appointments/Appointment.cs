@@ -1,6 +1,6 @@
-using Oogarts.Domain.Users.Patients;
+using Domain.Users.Patients;
 
-namespace Oogarts.Domain.Appointments;
+namespace Domain.Appointments;
 
 public class Appointment : Entity{
 

@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using Oogarts.Shared.Users.Doctors.Availabilities;
+using Shared.Users.Doctors.Availabilities;
 using Shared.Users.Teams.Biographies;
 using Shared.Users.Teams.Groups;
 
-namespace Oogarts.Shared.Users.Doctors.Employees;
+namespace Shared.Users.Doctors.Employees;
 
 public abstract class EmployeeDto
 {
@@ -12,7 +12,8 @@ public abstract class EmployeeDto
 		public long Id { get; set; }
 		public string? Firstname { get; set; }
 		public string? Lastname { get; set; }
-		public string? Image { get; set; }
+        public string? Email { get; set; }
+        public string? Image { get; set; }
 		public GroupDto.Index? Group { get; set; }
 	}
 

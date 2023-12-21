@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Oogarts.Shared.EyeConditions;
+using Shared.EyeConditions;
 
 namespace Client.EyeConditions.Components;
 public partial class EyeConditionCard

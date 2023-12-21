@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 
 
-namespace Oogarts.Shared.EyeConditions;
+namespace Shared.EyeConditions;
 
 public abstract class SymptomDto
 {

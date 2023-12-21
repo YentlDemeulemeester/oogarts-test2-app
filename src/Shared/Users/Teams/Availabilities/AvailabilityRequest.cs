@@ -1,4 +1,4 @@
-﻿namespace Oogarts.Shared.Users.Doctors.Availabilities;
+﻿namespace Shared.Users.Doctors.Availabilities;
 public abstract class AvailabilityRequest
 {
 	public class Index

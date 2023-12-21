@@ -1,12 +1,12 @@
 ﻿using Client.Classes;
-using Oogarts.Client.Extensions;
-using Oogarts.Shared.EyeConditions;
+using Client.Extensions;
+using Shared.EyeConditions;
 using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace Oogarts.Client.EyeConditions;
+namespace Client.EyeConditions;
 
 public class EyeConditionService : IEyeConditionService
 {

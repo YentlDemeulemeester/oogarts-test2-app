@@ -1,8 +1,8 @@
-using Oogarts.Domain.EyeConditions;
+using Domain.EyeConditions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Oogarts.Persistence.Configurations.EyeConditions;
+namespace Persistence.Configurations.EyeConditions;
 
 internal class EyeConditionConfiguration : EntityConfiguration<EyeCondition>
 {

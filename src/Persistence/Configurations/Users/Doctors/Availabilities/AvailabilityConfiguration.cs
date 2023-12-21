@@ -1,6 +1,6 @@
 ﻿using Domain.Users.Employees.Availabilities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Oogarts.Persistence.Configurations;
+using Persistence.Configurations;
 
 namespace Persistence.Configurations.Users.Doctors.Availabilities;
 internal class AvailabilityConfiguration : EntityConfiguration<Availability>

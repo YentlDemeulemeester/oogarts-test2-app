@@ -1,17 +1,10 @@
 using Domain.Files;
 using Microsoft.EntityFrameworkCore;
-using Oogarts.Domain.Articles;
-using Oogarts.Domain.EyeConditions;
-using Oogarts.Persistence;
-using Oogarts.Shared.EyeConditions;
+using Domain.Articles;
+using Domain.EyeConditions;
+using Persistence;
 using Services.Files;
 using Shared.Articles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Articles
 {
@@ -32,14 +25,14 @@ namespace Services.Articles
             if (await dbContext.Articles.AnyAsync(x => x.Title == model.Title))
                 throw new EntityAlreadyExistsException(nameof(Article), nameof(Article.Title), model.Title);
 
-            /*Image image = new Image(storageService.BasePath, model.ImageContentType!);*/
+            Image image = new Image(storageService.BasePath, model.ImageContentType!);
 
-            Article article = new(model.Title, model.Description, model.Content,  /*image.FileUri.ToString()*/ "papapa");
+            Article article = new(model.Title, model.Description, model.Content, image.FileUri.ToString());
 
             dbContext.Articles.Add(article);
             await dbContext.SaveChangesAsync();
 
-            /*Uri uploadSas = storageService.GenerateImageUploadSas(image);*/
+            Uri uploadSas = storageService.GenerateImageUploadSas(image);
 
             ArticleResult.Create result = new()
             {
@@ -47,7 +40,7 @@ namespace Services.Articles
                 Title = article.Title,
                 Description = article.Description,
                 Content = article.Content,
-                UploadUri = article.ImageUrl
+                UploadUri = uploadSas.ToString()
             };
 
             return result;
@@ -98,6 +91,24 @@ namespace Services.Articles
             };
 
             return result;
+        }
+
+        public async Task<ArticleDto.Detail> GetDetailAsync(long Id) 
+        {
+            ArticleDto.Detail? article = await dbContext.Articles.Select(x => new ArticleDto.Detail {
+                Id = x.Id,
+                Title = x.Title,
+                Description = x.Description,
+                ImageUrl = x.ImageUrl,
+                Content = x.Content,
+                Created = x.CreatedAt
+
+            }).SingleOrDefaultAsync(x => x.Id == Id);
+
+            if(article is null)
+                throw new EntityNotFoundException(nameof(article), Id);
+            
+            return article;
         }
     }
 }

@@ -2,7 +2,7 @@ using Domain.Users.Employees;
 using Domain.Users.Employees.Availabilities;
 using System.Text.Json.Serialization;
 
-namespace Oogarts.Domain.Users.Doctors;
+namespace Domain.Users.Doctors;
 
 public abstract class Employee : Entity {
 

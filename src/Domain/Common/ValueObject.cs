@@ -1,4 +1,4 @@
-namespace Oogarts.Domain.Common;
+namespace Domain.Common;
 
 /// <summary>
 /// Base class for all <see cref="ValueObject"/>s see

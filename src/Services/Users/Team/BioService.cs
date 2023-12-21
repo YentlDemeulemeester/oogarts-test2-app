@@ -1,7 +1,7 @@
 ﻿using Domain.Users.Employees;
 using Microsoft.EntityFrameworkCore;
-using Oogarts.Domain.Users.Doctors;
-using Oogarts.Persistence;
+using Domain.Users.Doctors;
+using Persistence;
 using Shared.Users.Teams.Biographies;
 
 namespace Services.Users.Team;

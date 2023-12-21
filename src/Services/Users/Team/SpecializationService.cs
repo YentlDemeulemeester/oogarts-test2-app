@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Oogarts.Domain.Users.Doctors;
-using Oogarts.Persistence;
-using Oogarts.Shared.Users.Doctors.Specializations;
+using Domain.Users.Doctors;
+using Persistence;
+using Shared.Users.Doctors.Specializations;
 
-namespace Oogarts.Services.Users.Doctors;
+namespace Services.Users.Doctors;
 public class SpecializationService : ISpecializationService
 {
 	private readonly ApplicationDbContext dbContext;

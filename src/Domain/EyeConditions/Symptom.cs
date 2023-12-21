@@ -1,11 +1,11 @@
-﻿using Oogarts.Domain.EyeConditions;
+﻿using Domain.EyeConditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oogarts.Domain.EyeConditions;
+namespace Domain.EyeConditions;
 
 public class Symptom : Entity
 {

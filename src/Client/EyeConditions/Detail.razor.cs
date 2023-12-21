@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
-using Oogarts.Shared.EyeConditions;
+using Shared.EyeConditions;
 
 namespace Client.EyeConditions;
 public partial class Detail

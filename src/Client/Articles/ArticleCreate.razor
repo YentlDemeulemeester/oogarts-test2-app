@@ -3,6 +3,7 @@
 @using Radzen.Blazor
 @using FluentValidation
 @inject IJSRuntime JSRuntime
+@attribute [Authorize(Roles = "Administrator")]
 
 <div class="create-article">
     <div class="header">

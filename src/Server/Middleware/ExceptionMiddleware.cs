@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net;
-using Oogarts.Domain.Exceptions;
-using Oogarts.Shared.Infrastructure;
+using Domain.Exceptions;
+using Shared.Infrastructure;
 
-namespace Oogarts.Server.Middleware;
+namespace Server.Middleware;
 
 /// <summary>
 /// Global error handling middleware, when an exception is thrown in the underlying layers,

@@ -1,7 +1,7 @@
 ﻿@page "/admin"
-@using Client.Admin.Components.Symptoms
 @using Client.Admin.Components.EyeConditions
 @using Client.Admin.Components.Articles
+@using Client.Admin.Components.Team
 @using Client.Admin.Services;
 @inject NavService NavService
 
@@ -9,7 +9,7 @@
     <div class="nav-logo">
         <img class="logo" src="images/logo.png" title="Logo">
     </div>
-    <AuthorizeView>
+    <AuthorizeView Roles="Administrator">
         <Authorized>
             <div class="@GetBurgerMenuClass()">
                 <div class="nav-item px-3" @onclick="ToggleMenu">
@@ -30,12 +30,7 @@
                         <hr />
                     </p>
                 </div>
-                <div class="nav-item px-3" @onclick="ToggleMenu">
-                    <p class="nav-link" @onclick='() => SetActive("symptom")'>
-                        SYMPTOMEN
-                        <hr />
-                    </p>
-                </div>
+
             </div>
         </Authorized>
     </AuthorizeView>
@@ -46,9 +41,9 @@
 </nav>
 
 <div class="gridContainer"> 
-@if (ActiveItem == "symptom")
+@if (ActiveItem == "team")
 {
-    <SymptomGrid />
+    <TeamGrid />
 }
 else if (ActiveItem == "eyecondition")
 {

@@ -1,8 +1,8 @@
 ﻿using System;
-using Oogarts.Domain.Common;
+using Domain.Common;
 using EntityFrameworkCore.Triggered;
 
-namespace Oogarts.Persistence.Triggers;
+namespace Persistence.Triggers;
 
 /// <summary>
 /// Acts like a database trigger but is database agnostic and executes on <see cref="ApplicationDbContext"/> SaveChanged(async) is called right before executing the query.

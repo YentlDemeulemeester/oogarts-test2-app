@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Oogarts.Domain.Users.Doctors;
+using Domain.Users.Doctors;
 
-namespace Oogarts.Persistence.Configurations.Users.Doctors;
+namespace Persistence.Configurations.Users.Doctors;
 
 internal class DoctorConfiguration : EntityConfiguration<Doctor>
 {

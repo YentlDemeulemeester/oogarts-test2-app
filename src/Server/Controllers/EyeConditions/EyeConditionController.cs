@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using Oogarts.Shared.EyeConditions;
+using Shared.EyeConditions;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Oogarts.Server.Controllers.EyeConditions;
+namespace Server.Controllers.EyeConditions;
 
 [ApiController]
 [Route("api/[controller]")]

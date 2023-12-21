@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Oogarts.Shared.Users.Doctors.Availabilities;
+using Services.Users.Doctors;
+using Shared.EyeConditions;
+using Shared.Users.Doctors.Availabilities;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Oogarts.Server.Controllers.Users.Doctors;
+namespace Server.Controllers.Users.Doctors;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -38,4 +40,11 @@ public class AvailabilityController : ControllerBase
 	{
 		return await availabilityService.GetAvailibilitiesFromDoctorAsync(request, doctorId);
 	}
+    [SwaggerOperation("Creates a new availibility")]
+    [HttpPost]
+    public async Task<IActionResult> Create(AvailabilityDto.Mutate model)
+    {
+        var creationId = await availabilityService.CreateAsync(model);
+        return CreatedAtAction(nameof(Create), creationId);
+    }
 }

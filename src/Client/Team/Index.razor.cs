@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Oogarts.Shared.Users.Doctors.Employees;
+using Shared.Users.Doctors.Employees;
 using Shared.Users.Teams.Groups;
 using static Client.Team.Components.EmployeeCard;
 

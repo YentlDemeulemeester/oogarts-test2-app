@@ -1,26 +1,26 @@
 using Microsoft.Extensions.DependencyInjection;
-using Oogarts.Services.Appointments;
-using Oogarts.Services.EyeConditions;
-using Oogarts.Services.Users.Doctors;
-using Oogarts.Services.Users.Team;
-using Oogarts.Shared.Appointments;
-using Oogarts.Shared.Appointments.Timeslots;
-using Oogarts.Shared.EyeConditions;
-using Oogarts.Shared.Users.Doctors.Availabilities;
-using Oogarts.Shared.Users.Doctors.Employees;
-using Oogarts.Shared.Users.Doctors.Specializations;
-using Oogarts.Shared.Users.Patients;
+using Services.Appointments;
+using Services.EyeConditions;
+using Services.Users.Doctors;
+using Services.Users.Team;
+using Shared.Appointments;
+using Shared.Appointments.Timeslots;
+using Shared.EyeConditions;
+using Shared.Users.Doctors.Availabilities;
+using Shared.Users.Doctors.Employees;
+using Shared.Users.Doctors.Specializations;
+using Shared.Users.Patients;
 using Shared.Articles;
 using Services.Articles;
 using Services.Files;
-using Oogarts.Shared.Users.Team.Doctors;
+using Shared.Users.Team.Doctors;
 using Services.EyeConditions;
 using Services.Users.Patients;
 using Shared.Users.Teams.Groups;
 using Services.Users.Team;
 using Shared.Users.Teams.Biographies;
 
-namespace Oogarts.Services;
+namespace Services;
 
 public static class ServiceCollectionExtensions
 {

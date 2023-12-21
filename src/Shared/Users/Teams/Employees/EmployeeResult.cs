@@ -1,4 +1,4 @@
-﻿namespace Oogarts.Shared.Users.Doctors.Employees;
+﻿namespace Shared.Users.Doctors.Employees;
 
 public abstract class EmployeeResult
 {

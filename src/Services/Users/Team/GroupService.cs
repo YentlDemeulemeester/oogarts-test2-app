@@ -1,6 +1,6 @@
 ﻿using Domain.Users.Employees;
 using Microsoft.EntityFrameworkCore;
-using Oogarts.Persistence;
+using Persistence;
 using Shared.Users.Teams.Groups;
 
 namespace Services.Users.Team;

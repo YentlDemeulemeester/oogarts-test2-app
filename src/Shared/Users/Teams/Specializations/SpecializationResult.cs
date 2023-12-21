@@ -1,4 +1,4 @@
-﻿namespace Oogarts.Shared.Users.Doctors.Specializations;
+﻿namespace Shared.Users.Doctors.Specializations;
 public abstract class SpecializationResult
 {
 	public class Index

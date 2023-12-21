@@ -1,6 +1,6 @@
 using Client.Classes;
-using Oogarts.Client.Extensions;
-using Oogarts.Shared.EyeConditions;
+using Client.Extensions;
+using Shared.EyeConditions;
 using System;
 using System.Net.Http;
 using System.Net.Http.Json;

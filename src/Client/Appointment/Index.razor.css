@@ -91,6 +91,7 @@
 .buttons {
     display: flex;
     align-self: flex-end;
+    flex-flow: wrap;
 }
 
 .buttons button{
@@ -156,4 +157,15 @@
 }
 .no-select {
     min-width:700px;
+}
+
+@media only screen and (max-width: 915px)
+{
+    .appointment .body {
+        flex-direction: column;
+        gap: 50px;
+        align-items: flex-start;
+
+        margin-bottom: 125px;
+    }
 }

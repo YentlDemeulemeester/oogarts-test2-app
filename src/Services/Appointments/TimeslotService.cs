@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Oogarts.Domain.Users.Doctors;
-using Oogarts.Persistence;
-using Oogarts.Shared.Appointments.Timeslots;
+using Domain.Users.Doctors;
+using Persistence;
+using Shared.Appointments.Timeslots;
 
-namespace Oogarts.Services.Appointments;
+namespace Services.Appointments;
 
 public class TimeslotService : ITimeslotService
 {

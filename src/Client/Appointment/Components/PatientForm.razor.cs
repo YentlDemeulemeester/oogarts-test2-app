@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using Oogarts.Shared.Users.Patients;
+using Shared.Users.Patients;
 using Radzen;
 using System;
 

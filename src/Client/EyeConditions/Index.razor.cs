@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
-using Oogarts.Shared.EyeConditions;
+using Microsoft.AspNetCore.Components;
+using System.Diagnostics.SymbolStore;
+using Shared.EyeConditions;
 
 namespace Client.EyeConditions;
 
@@ -21,9 +22,15 @@ public partial class Index
     [Parameter, SupplyParameterFromQuery] public string? Searchterm { get; set; }
     [Parameter, SupplyParameterFromQuery] public int? Page { get; set; }
     [Parameter, SupplyParameterFromQuery] public int? PageSize { get; set; }
-    [Parameter, SupplyParameterFromQuery] public long? SymptomId { get; set; }
+
+     public List<long>? symptomIds { get; set; }
 
 
+    async Task UpdateList(List<long> updatedList)
+    {
+        symptomIds = updatedList;
+        await OnParametersSetAsync();
+    }
 
     protected override async Task OnParametersSetAsync()
 	{
@@ -32,17 +39,13 @@ public partial class Index
             Searchterm = Searchterm,
             Page = Page.HasValue ? Page.Value : 1,
             PageSize = PageSize.HasValue ? PageSize.Value : 25,
-            SymptomId = SymptomId
+            SymptomIds = symptomIds
         };
 
 		var response = await EyeConditionService.GetIndexAsync(request);
         eyeConditions = response.EyeConditions.OrderBy(ec => ec.Name).ToList();
 
-        SymptomRequest.Index symptomRequest = new()
-        {
-
-        };
-        var symptomResponse = await SymptomService.GetIndexAsync(symptomRequest);
+        var symptomResponse = await SymptomService.GetIndexAsync(new SymptomRequest.Index());
         symptoms = symptomResponse.Symptoms.OrderBy(ec => ec.Name).ToList();
     }
     private void UserChanged()

@@ -15,7 +15,7 @@ namespace Services.Files
     {
         private readonly string connectionString;
 
-        public Uri BasePath => new Uri("https://hogentdemostorage.blob.core.windows.net/images");
+        public Uri BasePath => new Uri("https://g05devops.blob.core.windows.net/g05devopsblob");
 
         public BlobStorageService(IConfiguration configuration)
         {
@@ -24,7 +24,7 @@ namespace Services.Files
 
         public Uri GenerateImageUploadSas(Image image)
         {
-            string containerName = "images";
+            string containerName = "g05devopsblob";
             var blobServiceClient = new BlobServiceClient(connectionString);
             var containerClient = blobServiceClient.GetBlobContainerClient(containerName);
             BlobClient blobClient = containerClient.GetBlobClient(image.Filename);

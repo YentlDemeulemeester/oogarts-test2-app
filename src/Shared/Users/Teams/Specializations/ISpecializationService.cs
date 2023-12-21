@@ -1,4 +1,4 @@
-﻿namespace Oogarts.Shared.Users.Doctors.Specializations;
+﻿namespace Shared.Users.Doctors.Specializations;
 public interface ISpecializationService
 {
 	Task<SpecializationResult.Index> GetIndexAsync(SpecializationRequest.Index request);

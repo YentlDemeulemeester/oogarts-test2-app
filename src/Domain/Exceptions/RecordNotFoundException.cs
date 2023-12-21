@@ -1,4 +1,4 @@
-﻿namespace Oogarts.Domain.Exceptions;
+﻿namespace Domain.Exceptions;
 
 /// <summary>
 /// <see cref="Exception"/> to throw when the <see cref="Entity"/> was not found.

@@ -1,7 +1,7 @@
 ﻿using Domain.Users.Employees;
-using Oogarts.Domain.Users.Doctors;
+using Domain.Users.Doctors;
 
-namespace Oogarts.Domain.Users.Employees;
+namespace Domain.Users.Employees;
 
 public class Assistant : Employee
 {

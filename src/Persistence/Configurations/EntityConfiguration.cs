@@ -1,9 +1,9 @@
 using System;
-using Oogarts.Domain.Common;
+using Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Oogarts.Persistence.Configurations;
+namespace Persistence.Configurations;
 
 internal class EntityConfiguration<T> : IEntityTypeConfiguration<T> where T : Entity
 {

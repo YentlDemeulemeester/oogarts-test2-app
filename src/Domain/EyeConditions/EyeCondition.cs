@@ -1,4 +1,4 @@
-namespace Oogarts.Domain.EyeConditions;
+namespace Domain.EyeConditions;
 
 public class EyeCondition : Entity {
 
@@ -37,8 +37,6 @@ public class EyeCondition : Entity {
 
     }
 
-    /*    private readonly List<Symptom> symptoms = new();
-        public IReadOnlyCollection<Symptom> Symptoms => symptoms.AsReadOnly();*/
     private readonly List<Symptom> symptoms = new();
 	public IReadOnlyCollection<Symptom> Symptoms => symptoms.AsReadOnly();
 

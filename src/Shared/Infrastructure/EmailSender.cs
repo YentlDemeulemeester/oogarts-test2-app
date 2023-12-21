@@ -6,7 +6,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oogarts.Shared.Infrastructure;
+namespace Shared.Infrastructure;
 
 public class EmailSender : IEmailSender
 {

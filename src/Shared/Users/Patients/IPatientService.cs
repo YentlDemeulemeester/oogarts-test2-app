@@ -1,4 +1,4 @@
-﻿namespace Oogarts.Shared.Users.Patients;
+﻿namespace Shared.Users.Patients;
 public interface IPatientService
 {
 	Task<PatientResult.Index> GetIndexAsync(PatientRequest.Index request);

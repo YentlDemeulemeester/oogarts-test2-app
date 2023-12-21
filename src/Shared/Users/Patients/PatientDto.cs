@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Oogarts.Shared.Users.Patients;
+namespace Shared.Users.Patients;
 public abstract class PatientDto
 {
     public class Index

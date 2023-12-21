@@ -1,7 +1,7 @@
 using FluentValidation;
-using Oogarts.Shared.EyeConditions;
+using Shared.EyeConditions;
 
-namespace Oogarts.Shared.EyeConditions;
+namespace Shared.EyeConditions;
 public abstract class EyeConditionDto
 {
     public class Index

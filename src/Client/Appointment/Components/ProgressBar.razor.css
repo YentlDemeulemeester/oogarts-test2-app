@@ -61,3 +61,49 @@
     border-color: #AADFDF;
     background-color: #AADFDF;
 }
+
+@media only screen and (max-width: 575px) {
+    .progressbar .step {
+        padding: 5px;
+    }
+
+    .step:first-child .icon {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    .step:first-child .icon img{
+        width: 25px !important;
+        height: 25px !important;
+    }
+
+    .step.active .icon {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    .step.active .icon img{
+        width: 25px !important;
+        height: 25px !important;
+    }
+
+    .icon {
+        width: 35px;
+        height: 35px;
+    }
+    .icon img{
+        width: 20px;
+        height: 20px;
+    }
+
+    .step:not(:first-child):before {
+        height: 10px;
+    }
+
+    .label {
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width: 475px) {
+    .label {
+        display :none;
+    }
+}

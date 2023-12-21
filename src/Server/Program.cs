@@ -1,19 +1,20 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Oogarts.Persistence;
+using Persistence;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
-using Oogarts.Server.Middleware;
+using Server.Middleware;
 using Microsoft.AspNetCore.Authentication;
-using Oogarts.Server.Authentication;
-using Oogarts.Services;
-using Oogarts.Shared.Users.Patients;
-using Oogarts.Shared.Infrastructure;
+using Server.Authentication;
+using Services;
+using Shared.Users.Patients;
+using Shared.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using Microsoft.OpenApi.Models;
 using Client.Classes;
+using Client.Admin.Components.Team;
 
 var builder = WebApplication.CreateBuilder(args);
 

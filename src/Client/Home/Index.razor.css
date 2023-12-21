@@ -1,7 +1,4 @@
-﻿
-
-
-.home {
+﻿.home {
     display: flex;
     justify-content: space-between;
     align-items:center;
@@ -46,11 +43,6 @@
     z-index: -1001;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    width: 100vw;
-}
-
 .information h1 {
     font-family: 'Trirong', sans-serif;
     font-size: 56px;
@@ -75,7 +67,13 @@ body {
     border: none;
     border-radius: 10px;
     padding: 10px 20px;
+    transition: all 0.3s ease; 
 }
+
+.afspraakButton:hover {
+    transform: scale(1.05);
+}
+
 
 .container {
     font-family: 'Poppins', sans-serif;
@@ -86,14 +84,22 @@ body {
 }
 
 .contactLink {
-    margin-left: 25px;
     text-decoration: none;
     cursor: pointer;
     color: #2B2B2B;
 }
+.contactLink .icon{
+    transition: margin-left 200ms ease-in-out;
+}
+.contactLink:hover .icon{
+    margin-left: 15px;
+}
 
 .buttons {
+    display: flex;
     flex-flow: row wrap;
+    align-items: center;
+    gap: 25px;
 }
 
 .contactInfo {
@@ -105,9 +111,9 @@ body {
     .information h1 {
         font-size: 38px;
     }
-
-    .bg-bol {
-        display: none;
+}
+@media only screen and (max-width: 756px) {
+    .infoContainer {
+        margin-left: 0;
     }
-
 }

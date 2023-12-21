@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Oogarts.Services.Users.Doctors;
-using Oogarts.Shared.Users.Doctors.Availabilities;
-using Oogarts.Shared.Users.Doctors.Specializations;
+using Services.Users.Doctors;
+using Shared.Users.Doctors.Availabilities;
+using Shared.Users.Doctors.Specializations;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Oogarts.Server.Controllers.Users.Doctors;
+namespace Server.Controllers.Users.Doctors;
 
 [ApiController]
 [Route("api/[controller]")]

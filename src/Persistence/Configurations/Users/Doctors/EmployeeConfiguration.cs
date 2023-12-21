@@ -2,10 +2,10 @@ using Domain.Users.Employees;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Oogarts.Domain.Users.Doctors;
-using Oogarts.Domain.Users.Employees;
+using Domain.Users.Doctors;
+using Domain.Users.Employees;
 
-namespace Oogarts.Persistence.Configurations.Users.Doctors;
+namespace Persistence.Configurations.Users.Doctors;
 
 internal class EmployeeConfiguration : EntityConfiguration<Employee>
 {

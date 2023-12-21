@@ -1,10 +1,10 @@
 ﻿using Client.Classes;
-using Oogarts.Client.Extensions;
-using Oogarts.Client.Files;
-using Oogarts.Shared.Users.Doctors.Employees;
+using Client.Extensions;
+using Client.Files;
+using Shared.Users.Doctors.Employees;
 using System.Net.Http.Json;
 
-namespace Oogarts.Client.Team;
+namespace Client.Team;
 
 public class EmployeeService : IEmployeeService
 {

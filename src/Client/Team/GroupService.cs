@@ -1,5 +1,5 @@
 ﻿using Client.Classes;
-using Oogarts.Client.Extensions;
+using Client.Extensions;
 using Shared.Users.Teams.Groups;
 using System.Net.Http.Json;
 

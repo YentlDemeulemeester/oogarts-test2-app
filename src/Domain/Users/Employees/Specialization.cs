@@ -1,4 +1,4 @@
-﻿namespace Oogarts.Domain.Users.Doctors;
+﻿namespace Domain.Users.Doctors;
 public class Specialization : Entity {
 
     private string name = default!;

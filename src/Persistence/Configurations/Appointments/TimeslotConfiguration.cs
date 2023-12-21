@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Oogarts.Domain.Appointments;
+using Domain.Appointments;
 
-namespace Oogarts.Persistence.Configurations.Appointments;
+namespace Persistence.Configurations.Appointments;
 
 internal class TimeslotConfiguration : EntityConfiguration<Timeslot>
 {

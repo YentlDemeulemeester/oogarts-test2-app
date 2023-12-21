@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Oogarts.Domain.Users.Patients;
+using Domain.Users.Patients;
 
-namespace Oogarts.Persistence.Configurations.Users.Patients;
+namespace Persistence.Configurations.Users.Patients;
 
 internal class PatientConfiguration : EntityConfiguration<Patient>
 {

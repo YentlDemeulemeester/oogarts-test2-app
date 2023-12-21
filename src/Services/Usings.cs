@@ -1,2 +1,2 @@
-﻿global using Oogarts.Domain;
-global using Oogarts.Domain.Exceptions;
+﻿global using Domain;
+global using Domain.Exceptions;

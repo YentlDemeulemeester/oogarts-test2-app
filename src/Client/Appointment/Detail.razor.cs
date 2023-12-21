@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Oogarts.Shared.Infrastructure;
+using Shared.Infrastructure;
 
 namespace Client.Appointment;
 

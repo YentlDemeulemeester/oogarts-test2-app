@@ -1,15 +1,9 @@
 ﻿
 <nav class="navbar flex">
     <div class="nav-logo">
-        <img class="logo" src="images/logo.png" title="Logo">
+        <img class="logo" src="images/logo.png" title="Logo" @onclick="NavigateHome">
     </div>
     <div class="@GetBurgerMenuClass()">
-        <div class="nav-item px-3" @onclick="ToggleMenu">
-            <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
-                HOME
-                <hr />
-            </NavLink>
-        </div>
         <div class="nav-item px-3" @onclick="ToggleMenu">
             <NavLink class="nav-link" href="/Team" Match="NavLinkMatch.All">
                 TEAM

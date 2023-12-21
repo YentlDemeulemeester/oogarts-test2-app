@@ -1,4 +1,4 @@
-﻿namespace Oogarts.Fakers.Common;
+﻿namespace Fakers.Common;
 
 /// <summary>
 /// Base clase to create <see cref="Entity"/> fakers.

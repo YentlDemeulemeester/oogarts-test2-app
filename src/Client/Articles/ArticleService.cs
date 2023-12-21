@@ -1,6 +1,6 @@
-﻿using Client.Classes;
+using Client.Classes;
 using Microsoft.AspNetCore.Components;
-using Oogarts.Client.Extensions;
+using Client.Extensions;
 using Shared.Articles;
 using System.Net.Http.Json;
 
@@ -27,6 +27,12 @@ namespace Client.Articles
         {
             var response = await authenticatedClient.PostAsJsonAsync(endpoint, model);
             return await response.Content.ReadFromJsonAsync<ArticleResult.Create>();
+        }
+
+        public async Task<ArticleDto.Detail> GetDetailAsync(long Id)
+        {
+            var response = await publicClient.Client.GetFromJsonAsync<ArticleDto.Detail>($"{endpoint}/{Id}");
+            return response;
         }
 
         public async Task DeleteAsync(long id)

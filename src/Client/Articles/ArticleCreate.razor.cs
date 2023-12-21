@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Client.Files;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 using Shared.Articles;
@@ -12,6 +13,7 @@ namespace Client.Articles
         [Inject] public IArticleService ArticleService { get; set; } = default!;
         [Inject] public NavigationManager NavigationManager { get; set; } = default!;
         ArticleDto.Mutate.Validator validator = new ArticleDto.Mutate.Validator();
+        [Inject] public IStorageService StorageService { get; set; }
 
         private async Task CreateArticleAsync()
         {
@@ -27,7 +29,7 @@ namespace Client.Articles
             else
             {
                 ArticleResult.Create result = await ArticleService.CreateAsync(article);
-
+                await StorageService.UploadImageAsync(result.UploadUri, image!);
                 NavigationManager.NavigateTo($"Nieuws/{result.Id}");
             }
            

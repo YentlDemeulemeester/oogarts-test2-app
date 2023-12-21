@@ -1,16 +1,15 @@
 ﻿using Bogus;
 using Domain.Users.Employees;
+using Domain.Users.Employees.Availabilities;
 using Microsoft.EntityFrameworkCore;
-using Oogarts.Domain.Users.Doctors;
-using Oogarts.Domain.Users.Employees;
-using Oogarts.Domain.Users.Patients;
-using Oogarts.Persistence;
-using Oogarts.Shared.Users.Doctors.Availabilities;
-using Oogarts.Shared.Users.Doctors.Employees;
+using Domain.Users.Doctors;
+using Persistence;
+using Shared.Users.Doctors.Availabilities;
+using Shared.Users.Doctors.Employees;
 using Shared.Users.Teams.Biographies;
 using Shared.Users.Teams.Groups;
 
-namespace Oogarts.Services.Users.Team;
+namespace Services.Users.Team;
 
 public class EmployeeService : IEmployeeService
 {
@@ -42,6 +41,7 @@ public class EmployeeService : IEmployeeService
 				Firstname = x.FirstName,
 				Lastname = x.LastName,
 				Image = x.Image,
+				Email = x.Email,
 				Group = new GroupDto.Index
 				{
 					Id = x.Group.Id,
@@ -173,40 +173,75 @@ public class EmployeeService : IEmployeeService
 
 		return result;
 	}
-	public async Task<EmployeeDto.Detail> GetDetailAsync(long employeeId)
-	{
-		EmployeeDto.Detail? employee = await dbContext.Employees.Select(x => new EmployeeDto.Detail
-		{
-			Id = x.Id,
-			Firstname = x.FirstName,
-			Lastname = x.LastName,
-			Birthdate = x.Birthdate,
-			Image = x.Image,
-			Email = x.Email,
-			Phonenumber = x.PhoneNumber,
-			Availabilities = x.Availabilities.Select(x => new AvailabilityDto.Index
-			{
-				Id = x.Id,
-				StartDate = x.StartDate,
-				EndDate = x.EndDate,
-			}),
-			Group = new GroupDto.Index
-			{
-				Id = x.Group.Id,
-				Name = x.Group.Name,
-				Sequence = x.Group.Sequence,
-			},
-		}).SingleOrDefaultAsync(x => x.Id == employeeId);
+    public async Task<EmployeeDto.Detail> GetDetailAsync(long employeeId)
+    {
+        // Retrieve the employee and their current week availabilities
+        var today = DateTime.Today;
+        var startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+        var endOfWeek = startOfWeek.AddDays(6);
 
-		if (employee == null)
-		{
-			throw new EntityNotFoundException(nameof(employee), employeeId);
-		}
+        // Include the Group property when querying the employee
+        var employee = await dbContext.Employees
+            .Include(x => x.Availabilities)
+            .Include(x => x.Group) // Include the Group here
+            .SingleOrDefaultAsync(x => x.Id == employeeId);
 
-		return employee;
-	}
+        if (employee is null)
+        {
+            throw new EntityNotFoundException(nameof(employee), employeeId);
+        }
 
-	public async Task EditAsync(long employeeId, EmployeeDto.Mutate model)
+        // If there are no availabilities for the current week, create them
+        if (!employee.Availabilities.Any(a => a.StartDate >= startOfWeek && a.StartDate <= endOfWeek))
+        {
+            // Create availabilities for each day of the current week
+            // (Make sure the Availability class has a constructor that accepts these parameters)
+            for (int i = 0; i < 7; i++)
+            {
+                var date = startOfWeek.AddDays(i);
+                var availability = new Availability(new DateTime(date.Year, date.Month, date.Day, 9, 0, 0),
+                                                    new DateTime(date.Year, date.Month, date.Day, 17, 0, 0),
+                                                    employeeId);
+                dbContext.Availabilities.Add(availability);
+            }
+            await dbContext.SaveChangesAsync();
+
+            // Re-query or re-include the Availabilities after adding them to ensure they are in the context
+            await dbContext.Entry(employee).Collection(e => e.Availabilities).LoadAsync();
+        }
+
+        // Prepare the detail with availabilities
+        var employeeDetail = new EmployeeDto.Detail
+        {
+            Id = employee.Id,
+            Firstname = employee.FirstName,
+            Lastname = employee.LastName,
+            Birthdate = employee.Birthdate,
+            Image = employee.Image,
+            Email = employee.Email,
+            Phonenumber = employee.PhoneNumber,
+            Availabilities = employee.Availabilities
+                .Where(a => a.StartDate >= startOfWeek && a.StartDate <= endOfWeek)
+                .Select(a => new AvailabilityDto.Index
+                {
+                    Id = a.Id,
+                    StartDate = a.StartDate,
+                    EndDate = a.EndDate,
+                }).ToList(),
+            Group = employee.Group != null ? new GroupDto.Index
+            {
+                Id = employee.Group.Id,
+                Name = employee.Group.Name,
+                Sequence = employee.Group.Sequence,
+            } : null,
+        };
+
+        return employeeDetail;
+    }
+
+
+
+    public async Task EditAsync(long employeeId, EmployeeDto.Mutate model)
 	{
 		Employee? employee = await dbContext.Employees.SingleOrDefaultAsync(x => x.Id == employeeId);
 		

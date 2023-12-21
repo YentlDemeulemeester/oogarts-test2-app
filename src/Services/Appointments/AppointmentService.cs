@@ -1,13 +1,13 @@
 using Azure.Core;
 using Microsoft.EntityFrameworkCore;
-using Oogarts.Domain.Appointments;
-using Oogarts.Domain.Users.Doctors;
-using Oogarts.Persistence;
-using Oogarts.Shared.Appointments;
-using Oogarts.Shared.Appointments.Timeslots;
-using Oogarts.Shared.Users.Patients;
+using Domain.Appointments;
+using Domain.Users.Doctors;
+using Persistence;
+using Shared.Appointments;
+using Shared.Appointments.Timeslots;
+using Shared.Users.Patients;
 
-namespace Oogarts.Services.Appointments;
+namespace Services.Appointments;
 public class AppointmentService : IAppointmentService
 {
 

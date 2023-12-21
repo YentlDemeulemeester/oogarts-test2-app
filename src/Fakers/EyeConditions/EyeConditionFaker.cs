@@ -1,6 +1,6 @@
-using Oogarts.Domain.EyeConditions;
+using Domain.EyeConditions;
 
-namespace Oogarts.Fakers.EyeConditions;
+namespace Fakers.EyeConditions;
 
 public class EyeConditionFaker : EntityFaker<EyeCondition>
 {

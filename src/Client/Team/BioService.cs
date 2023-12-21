@@ -1,5 +1,5 @@
 ﻿using Client.Classes;
-using Oogarts.Client.Files;
+using Client.Files;
 using Shared.Users.Teams.Biographies;
 using System.Net.Http.Json;
 

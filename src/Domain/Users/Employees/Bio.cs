@@ -1,4 +1,4 @@
-﻿using Oogarts.Domain.Users.Doctors;
+﻿using Domain.Users.Doctors;
 
 namespace Domain.Users.Employees;
 

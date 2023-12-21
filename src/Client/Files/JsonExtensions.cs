@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using System.Text.Json;
 
-namespace Oogarts.Client.Files;
+namespace Client.Files;
 
 public static class JsonExtensions
 {

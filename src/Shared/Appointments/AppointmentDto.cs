@@ -1,8 +1,8 @@
 using FluentValidation;
-using Oogarts.Shared.Appointments.Timeslots;
-using Oogarts.Shared.Users.Patients;
+using Shared.Appointments.Timeslots;
+using Shared.Users.Patients;
 
-namespace Oogarts.Shared.Appointments;
+namespace Shared.Appointments;
 public abstract class AppointmentDto
 {
     public class Index

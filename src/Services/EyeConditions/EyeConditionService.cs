@@ -1,12 +1,12 @@
 using System.Linq;
-using Oogarts.Domain.EyeConditions;
-using Oogarts.Persistence;
-using Oogarts.Shared.EyeConditions;
+using Domain.EyeConditions;
+using Persistence;
+using Shared.EyeConditions;
 using Microsoft.EntityFrameworkCore;
 using Domain.Files;
 using Services.Files;
 
-namespace Oogarts.Services.EyeConditions;
+namespace Services.EyeConditions;
 public class EyeConditionService : IEyeConditionService
 {
     private readonly ApplicationDbContext dbContext;
@@ -24,14 +24,14 @@ public class EyeConditionService : IEyeConditionService
         if (await dbContext.EyeConditions.AnyAsync(x => x.Name == model.Name))
             throw new EntityAlreadyExistsException(nameof(EyeCondition), nameof(EyeCondition.Name), model.Name);
 
-        /*        Image image = new Image(storageService.BasePath, model.ImageContentType!);*/
+        Image image = new Image(storageService.BasePath, model.ImageContentType!);
 
-        //Brochure view url conversion to download url
+        //EyeCondition eyeCondition = new(model.Name, model.Description, model.Body, image.FileUri.ToString(), model.BrochureUrl!);
 
         string originalLink = model.BrochureUrl;
         string downloadLink = ConvertToDownloadLink(originalLink);
 
-        EyeCondition eyeCondition = new(model.Name, model.Description, model.Body, /*image.FileUri.ToString()*/ "Test", downloadLink);
+        EyeCondition eyeCondition = new(model.Name!, model.Description!, model.Body, image.FileUri.ToString(), downloadLink);
 
         var symptoms = await dbContext.Symptoms.Where(x => model.Symptoms.Select(s => s.Id).ToList().Contains(x.Id)).ToListAsync();
 
@@ -53,7 +53,7 @@ public class EyeConditionService : IEyeConditionService
         await dbContext.SaveChangesAsync();
 
         // Bug
-        //Uri uploadSas = storageService.GenerateImageUploadSas(image);
+        Uri uploadSas = storageService.GenerateImageUploadSas(image);
 
         EyeConditionResult.Create result = new()
         {
@@ -61,7 +61,7 @@ public class EyeConditionService : IEyeConditionService
             Name = eyeCondition.Name,
             Description = eyeCondition.Description,
             Body = eyeCondition.Body,
-            UploadUri = eyeCondition.ImageUrl,
+            UploadUri = uploadSas.ToString(),
             BrochureUrl = eyeCondition.BrochureUrl
         };
 
@@ -78,14 +78,12 @@ public class EyeConditionService : IEyeConditionService
         {
             query = query.Where(x => x.Name.ToLower().Contains(searchTerm));
         }
-        if (request.SymptomId is not null)
+        if (request.SymptomIds is not null)
         {
-            query = query.Where(x => x.Symptoms.Any(es => es.Id == request.SymptomId.Value));
+            query = query.Where(x => x.Symptoms.Any(s => request.SymptomIds.Contains(s.Id)));
         }
 
         int totalAmount = await query.CountAsync();
-
-        
 
 
         var items = await query

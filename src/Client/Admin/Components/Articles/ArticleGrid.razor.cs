@@ -2,17 +2,20 @@
 using Microsoft.JSInterop;
 using Radzen.Blazor;
 using Shared.Articles;
+using Shared.EyeConditions;
+using System.Drawing;
 using System.Security.Policy;
 
 namespace Client.Admin.Components.Articles
 {
     public partial class ArticleGrid
     {
-        [Inject] IJSRuntime JSRuntime { get; set; }
         RadzenDataGrid<ArticleDto.Index> articleGrid;
         List<ArticleDto.Index>? articles;
         [Inject] public IArticleService ArticleService { get; set; } = default!;
         [Inject] public NavigationManager NavigationManager { get; set; }
+        private bool open = false;
+        private ArticleDto.Index deleteRequest = null;
 
         protected override async Task OnInitializedAsync()
         {
@@ -21,22 +24,34 @@ namespace Client.Admin.Components.Articles
             articles = res.Articles.ToList();
         }
 
-        async Task EditRow(ArticleDto.Index eyeCondition)
+        async Task EditRow(ArticleDto.Index article)
         {
-            long eyeConditionId = eyeCondition.Id;
-            await JSRuntime.InvokeVoidAsync("openInNewTab", $"/Nieuws/edit/{eyeConditionId}");
+            long articleId = article.Id;
+            NavigationManager.NavigateTo($"/Nieuws/edit/{articleId}");
         }
 
         async Task DeleteRow(ArticleDto.Index article)
         {
-            long articleId = article.Id;
-            await ArticleService.DeleteAsync(articleId);
-            articles.Remove(article);
-            await articleGrid.Reload();
+            open = !open;
+            deleteRequest = article;
         }
         async Task CreateArticle()
         {
-            await JSRuntime.InvokeVoidAsync("openInNewTab", "/Nieuws/nieuw");
+            NavigationManager.NavigateTo($"/Nieuws/nieuw");
+        }
+
+        private void CloseDeletePopUp()
+        {
+            open = !open;
+            deleteRequest = null;
+        }
+
+        private async Task ConfirmDelete()
+        {
+            await ArticleService.DeleteAsync(deleteRequest.Id);
+            open = !open;
+            articles.Remove(deleteRequest);
+            await articleGrid.Reload();
         }
 
     }

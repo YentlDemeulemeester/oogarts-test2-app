@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
-using Oogarts.Shared.EyeConditions;
+using Shared.EyeConditions;
 using static System.Net.Mime.MediaTypeNames;
 using System;
+using Client.Files;
 
 namespace Client.EyeConditions.Components
 {
@@ -17,6 +18,8 @@ namespace Client.EyeConditions.Components
         [Inject] public ISymptomService SymptomService { get; set; } = default!;
         [Inject] public IEyeConditionService EyeConditionService { get; set; } = default!;
         [Inject] public NavigationManager NavigationManager { get; set; } = default!;
+        [Inject] public IStorageService StorageService { get; set; }
+
         EyeConditionDto.Mutate.Validator validator = new EyeConditionDto.Mutate.Validator();
         public bool symptomForm = false;
 
@@ -62,7 +65,7 @@ namespace Client.EyeConditions.Components
             else
             {
                 EyeConditionResult.Create result = await EyeConditionService.CreateAsync(eyeCondition);
-
+                await StorageService.UploadImageAsync(result.UploadUri, image!);
                 NavigationManager.NavigateTo($"Oogaandoening/{result.EyeConditionId}");
             }
         }

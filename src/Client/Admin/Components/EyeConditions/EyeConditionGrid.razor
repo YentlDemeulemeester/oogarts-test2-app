@@ -1,4 +1,4 @@
-﻿@using Oogarts.Shared.EyeConditions;
+﻿@using Shared.EyeConditions;
 
 <RadzenButton ButtonStyle="ButtonStyle.Success" Icon="add_circle_outline" class="mt-2 mb-4" Text="Voeg nieuwe oogaandoening toe" Click="@CreateEyeCondition" />
 <RadzenDataGrid @ref="eyeConditionGrid" GridLines="Radzen.DataGridGridLines.Vertical" AllowAlternatingRows="true" AllowPaging="true" PageSize="3" AllowSorting="true" Data="@eyeConditions" TItem="EyeConditionDto.Index" ColumnWidth="200px">
@@ -27,3 +27,4 @@
         </RadzenDataGridColumn>
     </Columns>
 </RadzenDataGrid>
+<DeletePopUp Open="@open" ObjectName="oogaandoening" ToggleClose="CloseDeletePopUp" RequestDelete="ConfirmDelete" />

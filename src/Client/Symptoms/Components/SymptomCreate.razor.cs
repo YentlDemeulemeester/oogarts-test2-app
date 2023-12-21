@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using Oogarts.Shared.EyeConditions;
+using Shared.EyeConditions;
 
 namespace Client.Symptoms.Components
 {
