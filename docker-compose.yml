@@ -4,7 +4,7 @@ version: '3.8'
 services:
   mysql:
     image: mysql
-    container_name: mysql
+    container_name: mysql_container
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: Eyedoctor1!
@@ -24,7 +24,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: oogarts
+    container_name: oogarts_container
     ports:
       - '5050:80'
     environment:
